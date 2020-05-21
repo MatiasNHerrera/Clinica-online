@@ -1,0 +1,20 @@
+<div class="cntHabilitar">
+    <h1>Profesionales Disponibles</h1>
+    <table>
+        <thead>
+            <th>Correo</th>
+            <th>Foto Uno</th>
+            <th>Foto Dos</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let profesional of this.profesionales">
+                <td>{{profesional.email}}</td>
+                <td><img src="{{profesional.fotoUno}}" alt=""></td>
+                <td><img src="{{profesional.fotoDos}}" alt=""></td>
+                <td *ngIf="!profesional.habilitado" (click)="habilitar(profesional.email, 'habilitar')"><button>Habilitar</button></td>
+                <td *ngIf="profesional.habilitado" (click)="habilitar(profesional.email, 'deshabilitar')"><button>Deshabilitar</button></td>
+                <hr>
+            </tr>
+        </tbody>
+    </table>
+</div>

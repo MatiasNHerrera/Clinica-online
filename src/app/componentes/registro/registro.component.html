@@ -1,0 +1,40 @@
+<div class="cntRegistro">
+    <div class="title">
+        <h1 *ngIf="!user">Registro</h1>
+        <h1 *ngIf="user == 'profesional'">Registro Profesional</h1>
+        <h1 *ngIf="user == 'paciente'">Registro Paciente</h1>
+    </div>
+    <div class="options" *ngIf="!user">
+        <button (click)="nuevo('paciente')">Paciente</button>
+        <button (click)="nuevo('profesional')">Profesional</button>
+    </div>
+    <form class="formulario" *ngIf="user == 'paciente'">
+        <div class="datosPaciente">
+            <input type="text" placeholder="Ingrese correo" [(ngModel)]="email" name="emailPaciente" maxlength="30">
+            <input type="password" placeholder="Ingrese contraseña" [(ngModel)]="pass" name="passPaciente" maxlength="20">
+            <input type="password" placeholder="Repita contraseña" [(ngModel)]="claveRepetida" name="repitaPassPaciente" maxlength="20">
+            <input type="file" (change)="upload($event, 1)">
+            <input type="file" (change)="upload($event, 2)">
+            <div class="rto">
+                <button (click)="registrar()">Registrar</button>
+                <button (click)="cancelar()">Cancelar</button>
+            </div>  
+        </div>
+    </form>
+    <form class="formulario" *ngIf="user == 'profesional'">
+        <div class="datosProfesional">
+            <input type="text" placeholder="Ingrese correo" [(ngModel)]="email" name="emailProfesional" maxlength="30">
+            <input type="password" placeholder="Ingrese contraseña"  [(ngModel)]="pass" name="passProfesional" maxlength="20">
+            <input type="password" placeholder="Repita contraseña" [(ngModel)]="claveRepetida" name="repitaPassProfesional" maxlength="20">
+            <input type="text" placeholder="Ingrese especialidades" [(ngModel)]="especialidades" name="repitaPassProfesional" maxlength="40">
+            <input type="file" (change)="upload($event, 1)">
+            <input type="file" (change)="upload($event, 2)">
+            <div class="rto">
+                <button (click)="registrar()">Registrar</button>
+                <button (click)="cancelar()">Cancelar</button>
+            </div>  
+        </div>
+    </form>
+</div>
+<div class="mensaje" id="mensajeRegistro" style="display: none;">
+</div>

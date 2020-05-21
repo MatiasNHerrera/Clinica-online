@@ -1,0 +1,33 @@
+<div class="cntrPrincipal" *ngIf="queMostrar == 'principal'">
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="../../../assets/imagenes/utn.png" alt="">
+                <span>Clinica Online</span>
+            </div>
+            <ul>
+                <button *ngIf="usuario.perfil == 'admin'" (click)="cambiarVista('habilitar')">Aceptar Profesional</button>
+                <button *ngIf="usuario.perfil == 'admin'" (click)="cambiarVista('registro')">Agregar Admin</button>
+                <li routerLink="/login"><a>Login</a></li>
+                <li routerLink="/registro"><a>Registro</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="cntrBody">
+        <div class="turno">
+            <h1>¿Desea ser atendido?</h1>
+            <button>Pedir Turno</button>
+        </div>
+        <div class="reseña">
+            <p>Comentarios *</p>
+            <input type="text">
+            <button>Enviar</button>
+        </div>
+    </div>
+</div>
+<div class="registro-admin" *ngIf="queMostrar == 'registro'">
+    <app-registro-admin (cambioVista)="cambiarVista($event)"></app-registro-admin>
+</div>
+<div class="habilitar-profesional" *ngIf="queMostrar == 'habilitar'">
+    <app-habilitar-profesional></app-habilitar-profesional>
+</div>

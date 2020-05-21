@@ -1,0 +1,51 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+.cntHabilitar
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #fff;
+    color: black;
+    overflow: auto;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px 2px rgba(0,0,0,0.75);
+}
+
+table
+{
+    width: 90%;
+}
+
+td
+{
+    width: 30%;
+}
+
+td img
+{
+    width: 30%;
+}
+
+h1
+{
+    margin: 5% 0 7% 0;
+}
+
+td button
+{
+    width: 90px;
+    height: 35px;
+    background: rgb(97, 140, 78);
+    border: none;
+    font-size: 1.0em;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s;
+}

@@ -1,0 +1,117 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+    color: ghostwhite;
+}
+
+.cntRegistro
+{
+    height: 100%;
+    background: #ffff;
+    box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.75);
+    border-radius: 5px;
+}
+
+
+.title
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 15%;
+    background: rgb(73, 158, 3);
+}
+
+h1
+{
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.formulario
+{
+    width: 100%;
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.datos
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+ 
+.datos input[type="text"], .datos input[type="password"]
+{
+    margin: 5%;
+    height: 60px;
+    width: 100%;
+    border: none;
+    background: rgba(90,152,43,0.5);
+    text-align: center;
+    font-size: 1.3em;
+    outline: none;
+    border-radius: 5px;
+}
+
+.datos input[type="text"]:focus, .datos input[type="password"]:focus
+{
+    border: 1px solid rgb(97, 156, 20);
+    box-shadow: 0px 0px 0px 4px rgba(57, 114, 3, 0.3);
+}
+
+.rto
+{
+    width: 90%;
+    max-height: 60px;
+    margin-top: 10%;
+}
+
+.datos button
+{
+    width: 40%;
+    height: 38px;
+    background: rgb(97, 140, 78);
+    border: none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+    outline: none;
+    margin: 5%;
+}
+
+.datos button:hover
+{
+    background: rgb(58, 83, 48);
+}
+
+::placeholder
+{
+    color: ghostwhite;
+}
+
+.mensaje
+{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 7%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2em;
+    color: rgb(204, 37, 37);
+}

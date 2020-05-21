@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "clinica-27d87": {
+      "hosting": {
+        "clinica": [
+          "clinica-27d87"
+        ]
+      }
+    }
+  }
+}

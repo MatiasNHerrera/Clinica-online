@@ -1,0 +1,33 @@
+<div class="cntLogin" id="cntLogin">
+    <div class="title">
+        <h1>Login</h1>
+    </div>
+    <form class="formulario">
+        <div class="datos">
+            <div class="email">
+                <div class="emailImg">
+                    <img src="../../../assets/imagenes/email.png" alt="">
+                </div>
+                <input type="text" placeholder="Ingrese correo" [(ngModel)]="email" name="email" maxlength="30">
+            </div>
+            <div class="password">
+                <div class="passwordImg">
+                    <img src="../../../assets/imagenes/password.png" alt="">
+                </div>
+                <input type="password" placeholder="Ingrese contraseña" [(ngModel)]="pass" name="pass" maxlength="20">
+            </div>
+            <div class="registrarse">
+                <p>¿Todavia no tenes una cuenta?<span routerLink="/registro">Registrate</span></p>
+            </div> 
+            <div class="rto">
+                <button (click)="loguear()">Login</button>
+                <button (click)="cancelar()">Cancelar</button>
+            </div> 
+        </div>
+    </form>
+</div>
+<div class="mensaje" id="mensajeLogin" style="display: none;">
+</div>
+<div class="loading" id="loadingLogin" hidden>
+    <img src="../../../assets/imagenes/loading.gif" alt="">
+</div>

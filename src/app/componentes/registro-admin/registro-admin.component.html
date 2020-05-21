@@ -1,0 +1,18 @@
+<div class="cntRegistro">
+    <div class="title">
+        <h1>Registro Administrador</h1>
+    </div>
+    <form class="formulario">
+        <div class="datos">
+            <input type="text" placeholder="Ingrese correo" [(ngModel)]="email" name="emailPaciente" maxlength="30">
+            <input type="password" placeholder="Ingrese contraseña" [(ngModel)]="pass" name="passPaciente" maxlength="20">
+            <input type="password" placeholder="Repita contraseña" [(ngModel)]="claveRepetida" name="repitaPassPaciente" maxlength="20">
+            <div class="rto">
+                <button (click)="registroMasValidacion()">Registrar</button>
+                <button (click)="cancelar()">Cancelar</button>
+            </div>  
+        </div>
+    </form>
+</div>
+<div class="mensaje" id="mensajeRegistroAdmin" style="display: none;">
+</div>
