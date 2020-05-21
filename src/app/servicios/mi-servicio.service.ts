@@ -21,6 +21,11 @@ export class MiServicioService {
     return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
+  getLogueado()
+  {
+    return this.fireAuth.auth.currentUser;
+  }
+
   enviarEmail()
   {
     let user = this.fireAuth.auth.currentUser;
@@ -75,5 +80,12 @@ export class MiServicioService {
     setTimeout(() => {
       localStorage.setItem("usuarioLogueado", JSON.stringify(this.usuario));
     },3000);
+  }
+
+
+  getEmailVerified()
+  {
+    let user = this.fireAuth.auth.currentUser;
+    return user.emailVerified;
   }
 }

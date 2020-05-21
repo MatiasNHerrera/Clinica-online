@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
 
-  constructor() { }
+  constructor(private navegador : Router, private auth : AngularFireAuth) { }
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean
   {
-    let retorno = false;
-    let usuario = localStorage.getItem("usuarioLogueado");
+    let current = this.auth.auth.currentUser;
     
-    if(usuario != "")
-      retorno = true;
-
-    return retorno; 
+    if(current != null)
+      return true;
+    else
+      this.navegador.navigate(["login"]);
+      return false
   }
 }
 

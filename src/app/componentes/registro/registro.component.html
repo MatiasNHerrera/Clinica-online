@@ -7,6 +7,7 @@
     <div class="options" *ngIf="!user">
         <button (click)="nuevo('paciente')">Paciente</button>
         <button (click)="nuevo('profesional')">Profesional</button>
+        <button routerLink="/principal">Cancelar</button>
     </div>
     <form class="formulario" *ngIf="user == 'paciente'">
         <div class="datosPaciente">

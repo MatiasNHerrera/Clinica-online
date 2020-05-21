@@ -12,10 +12,15 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  current;
   usuario;
   email;
   pass;
-  constructor(private servicio : MiServicioService, private navegador : Router, private auth : AngularFireAuth, private db : AngularFirestore) { }
+  constructor(private servicio : MiServicioService, private navegador : Router, private auth : AngularFireAuth, private db : AngularFirestore)
+  {
+
+  }
 
   ngOnInit(): void {
   }
@@ -27,13 +32,11 @@ export class LoginComponent implements OnInit {
 
   loguear()
   {
-    let user = this.auth.auth.currentUser;
 
     this.servicio.login(this.email, this.pass).then(() => {
 
-      if(user.emailVerified)
+      if(this.servicio.getEmailVerified())
       {
-        this.traerUsuario(this.email);
         this.loading()
         setTimeout(() => {
           this.navegador.navigate(["principal"]);
@@ -44,7 +47,8 @@ export class LoginComponent implements OnInit {
 
     }).catch(() => {
       this.textoMostrar("Este usuario no se encuentra registrado");
-    })
+    });
+
   }
 
   fadeIn()
@@ -59,11 +63,6 @@ export class LoginComponent implements OnInit {
   {
     $("#mensajeLogin").text(mensaje);
     this.fadeIn();
-  }
-
-  async traerUsuario(email : string)
-  {
-    let usuario = await this.servicio.retornarInfoUsuario(email);
   }
 
   loading()

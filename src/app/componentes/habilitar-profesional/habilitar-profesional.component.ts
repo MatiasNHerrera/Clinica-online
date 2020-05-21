@@ -25,8 +25,6 @@ export class HabilitarProfesionalComponent implements OnInit {
   {
     for(let profesional of this.profesionales)
     {
-      console.log(profesional.fotoUno);
-      console.log(profesional.fotoDos);
       storage().ref().child(profesional.fotoUno).getDownloadURL().then((dato) => {
         profesional.fotoUno = dato;
       })

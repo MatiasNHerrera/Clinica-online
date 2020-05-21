@@ -6,6 +6,7 @@ import { PrincipalComponent } from './componentes/principal/principal.component'
 import { RegistroAdminComponent } from './componentes/registro-admin/registro-admin.component';
 import { AuthGuardService } from './servicios/auth-guard.service';
 import { HabilitarProfesionalComponent } from './componentes/habilitar-profesional/habilitar-profesional.component';
+import { PedirTurnoComponent } from './componentes/pedir-turno/pedir-turno.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "principal", component: PrincipalComponent},
   {path: "registro/admin", component: RegistroAdminComponent},
-  {path: "habilitar", component: HabilitarProfesionalComponent}
+  {path: "habilitar", component: HabilitarProfesionalComponent},
+  {path: "pedir-turno", component: PedirTurnoComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({

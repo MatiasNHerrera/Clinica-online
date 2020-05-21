@@ -8,7 +8,8 @@
             <ul>
                 <button *ngIf="usuario.perfil == 'admin'" (click)="cambiarVista('habilitar')">Aceptar Profesional</button>
                 <button *ngIf="usuario.perfil == 'admin'" (click)="cambiarVista('registro')">Agregar Admin</button>
-                <li routerLink="/login"><a>Login</a></li>
+                <li *ngIf="this.current" (click)="logout()"><a>Log Out</a></li>
+                <li routerLink="/login" *ngIf="usuario == ''"><a>Log In</a></li>
                 <li routerLink="/registro"><a>Registro</a></li>
             </ul>
         </nav>
@@ -16,7 +17,7 @@
     <div class="cntrBody">
         <div class="turno">
             <h1>¿Desea ser atendido?</h1>
-            <button>Pedir Turno</button>
+            <button routerLink="/pedir-turno">Pedir Turno</button>
         </div>
         <div class="reseña">
             <p>Comentarios *</p>

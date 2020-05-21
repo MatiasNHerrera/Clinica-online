@@ -60,6 +60,16 @@ h1
     outline: none;
 }
 
+.options button:nth-child(3)
+{
+    width: 20%;
+    height: 10%;
+}
+.options button:nth-child(1)
+{
+    margin-top: 8%;
+}
+
 .formulario
 {
     width: 100%;

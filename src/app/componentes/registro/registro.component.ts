@@ -40,6 +40,7 @@ export class RegistroComponent implements OnInit {
 
   cancelar()
   {
+    localStorage.setItem("usuarioLogueado", "");
     this.user = null;
     this.fotoDos = "";
     this.fotoUno = "";

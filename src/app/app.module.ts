@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { PrincipalComponent } from './componentes/principal/principal.component';
 import { RegistroAdminComponent } from './componentes/registro-admin/registro-admin.component';
 import { HabilitarProfesionalComponent } from './componentes/habilitar-profesional/habilitar-profesional.component';
+import { MiServicioService } from './servicios/mi-servicio.service';
+import { AuthGuardService } from './servicios/auth-guard.service';
+import { PedirTurnoComponent } from './componentes/pedir-turno/pedir-turno.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { HabilitarProfesionalComponent } from './componentes/habilitar-profesion
     LoginComponent,
     PrincipalComponent,
     RegistroAdminComponent,
-    HabilitarProfesionalComponent
+    HabilitarProfesionalComponent,
+    PedirTurnoComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,7 @@ import { HabilitarProfesionalComponent } from './componentes/habilitar-profesion
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [MiServicioService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
