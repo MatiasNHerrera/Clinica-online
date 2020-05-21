@@ -28,7 +28,6 @@ export class PrincipalComponent implements OnInit {
   cambiarVista(mostrar : string)
   {
     this.queMostrar = mostrar;
-    this.navegador.navigate(["login"]);
   }
 
   logout()

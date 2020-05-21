@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MiServicioService } from 'src/app/servicios/mi-servicio.service';
 import { storage } from 'firebase';
@@ -10,6 +10,7 @@ import { storage } from 'firebase';
 })
 export class HabilitarProfesionalComponent implements OnInit {
 
+  @Output() cambioVista : EventEmitter<any> = new EventEmitter<any>();
   profesionales = [];
 
   constructor(private db: AngularFirestore) { }
@@ -50,6 +51,11 @@ export class HabilitarProfesionalComponent implements OnInit {
         });
       break;
     }
+  }
+
+  cancelar()
+  {
+    this.cambioVista.emit("principal");
   }
 
 }

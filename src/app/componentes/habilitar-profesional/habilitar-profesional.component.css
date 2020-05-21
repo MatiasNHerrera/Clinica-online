@@ -37,7 +37,7 @@ h1
     margin: 5% 0 7% 0;
 }
 
-td button
+button
 {
     width: 90px;
     height: 35px;
@@ -48,4 +48,10 @@ td button
     cursor: pointer;
     outline: none;
     transition: 0.2s;
+    color: ghostwhite;
+    margin: 5%;
+}
+button:hover
+{
+    background: rgb(58, 83, 48);
 }
