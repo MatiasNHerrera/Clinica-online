@@ -7,6 +7,8 @@ import { RegistroAdminComponent } from './componentes/registro-admin/registro-ad
 import { AuthGuardService } from './servicios/auth-guard.service';
 import { HabilitarProfesionalComponent } from './componentes/habilitar-profesional/habilitar-profesional.component';
 import { PedirTurnoComponent } from './componentes/pedir-turno/pedir-turno.component';
+import { AtenderPacientesComponent } from './componentes/atender-pacientes/atender-pacientes.component';
+import { AuthGuardProfesionalService } from './servicios/auth-guard-profesional.service';
 
 
 const routes: Routes = [
@@ -16,7 +18,8 @@ const routes: Routes = [
   {path: "principal", component: PrincipalComponent},
   {path: "registro/admin", component: RegistroAdminComponent},
   {path: "habilitar", component: HabilitarProfesionalComponent},
-  {path: "pedir-turno", component: PedirTurnoComponent, canActivate: [AuthGuardService]}
+  {path: "pedir-turno", component: PedirTurnoComponent, canActivate: [AuthGuardService]},
+  {path: "atender-pacientes", component: AtenderPacientesComponent, canActivate : [AuthGuardProfesionalService]}
 ];
 
 @NgModule({

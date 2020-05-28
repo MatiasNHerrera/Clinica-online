@@ -15,6 +15,7 @@ import { HabilitarProfesionalComponent } from './componentes/habilitar-profesion
 import { MiServicioService } from './servicios/mi-servicio.service';
 import { AuthGuardService } from './servicios/auth-guard.service';
 import { PedirTurnoComponent } from './componentes/pedir-turno/pedir-turno.component';
+import { AtenderPacientesComponent } from './componentes/atender-pacientes/atender-pacientes.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PedirTurnoComponent } from './componentes/pedir-turno/pedir-turno.compo
     PrincipalComponent,
     RegistroAdminComponent,
     HabilitarProfesionalComponent,
-    PedirTurnoComponent
+    PedirTurnoComponent,
+    AtenderPacientesComponent
   ],
   imports: [
     BrowserModule,

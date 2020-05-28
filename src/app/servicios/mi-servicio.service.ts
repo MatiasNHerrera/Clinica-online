@@ -23,7 +23,11 @@ export class MiServicioService {
 
   getLogueado()
   {
-    return this.fireAuth.auth.currentUser;
+    return new Promise((resolve,reject) => {
+      this.fireAuth.auth.onAuthStateChanged((user) => {
+        resolve(user);
+      })
+    })
   }
 
   enviarEmail()
@@ -32,60 +36,43 @@ export class MiServicioService {
     user.sendEmailVerification();
   }
 
-  retornarInfoUsuario(email : string) : any
-  {
-    let listado : any;
-
-    this.db.collection("pacientes").valueChanges().subscribe((datos) => {
-
-      listado = datos
-
-      for(let paciente of listado)
-      {
-        if(paciente.email == email)
-        {
-          this.usuario = paciente;
-          break;
-        }
-      }
-
-      this.db.collection("profesionales").valueChanges().subscribe((datos) => {
-
-        listado = datos
-
-        for(let profesional of listado)
-        {
-          if(profesional.email == email)
-          {
-            this.usuario = profesional;
-            break;
-          }
-        }
-
-        this.db.collection("administradores").valueChanges().subscribe((datos) => {
-          listado = datos
-
-          for(let admin of listado)
-          {
-            if(admin.email == email)
-            {
-              this.usuario = admin;
-              break;
-            }
-          }
-        });
-      });
-    });
-
-    setTimeout(() => {
-      localStorage.setItem("usuarioLogueado", JSON.stringify(this.usuario));
-    },3000);
-  }
-
 
   getEmailVerified()
   {
     let user = this.fireAuth.auth.currentUser;
     return user.emailVerified;
+  }
+
+  getUsuario(email : string)
+  {
+    let user : any;
+    return new Promise((resolve, reject) => {this.db.collection("pacientes").doc(email).valueChanges().subscribe((dato) => {
+        this.usuario = dato;
+
+          if(this.usuario == undefined)
+          {
+            this.db.collection("profesionales").doc(email).valueChanges().subscribe((dato) => {
+              this.usuario = dato;
+
+              if(this.usuario == undefined)
+              {
+                this.db.collection("administradores").doc(email).valueChanges().subscribe((dato) => {
+                  this.usuario = dato;
+                  resolve(this.usuario);
+                });
+              }
+              else
+              {
+                resolve(this.usuario);
+              }
+              
+            });
+          }
+          else
+          {
+            resolve(this.usuario);
+          }
+      });
+    })
   }
 }

@@ -1,1 +1,25 @@
-<p>pedir-turno works!</p>
+<div class="cnt-pedir-turno">
+    <div class="title">
+        <h1>Turnos</h1>
+    </div>
+    <div class="cnt-form">
+        <div class="profesionales-disponibles">
+            <label for="">Profesionales</label>
+            <select name="" id="">
+                <option selected hidden>Seleccione una opction</option>
+                <option *ngFor="let profesionales of profesionales">{{profesionales.email}}</option>
+            </select>
+        </div>
+        <div class="fecha-turno">
+            <label for="">Fecha</label>
+            <input type="date">
+        </div>
+        <div class="hora-turno">
+            <label for="">Horarios</label>
+            <input type="time" min="09:00" max="18:00">
+        </div>
+        <div class="btn-turno">
+            <button>Turno</button>
+        </div>
+    </div>
+</div>

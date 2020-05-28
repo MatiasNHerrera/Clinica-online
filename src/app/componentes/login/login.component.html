@@ -8,13 +8,13 @@
                 <div class="emailImg">
                     <img src="../../../assets/imagenes/email.png" alt="">
                 </div>
-                <input type="text" placeholder="Ingrese correo" [(ngModel)]="email" name="email" maxlength="30">
+                <input id="correo" type="text" placeholder="Ingrese correo" name="email" maxlength="30">
             </div>
             <div class="password">
                 <div class="passwordImg">
                     <img src="../../../assets/imagenes/password.png" alt="">
                 </div>
-                <input type="password" placeholder="Ingrese contraseña" [(ngModel)]="pass" name="pass" maxlength="20">
+                <input id="clave" type="password" placeholder="Ingrese contraseña" name="pass" maxlength="20">
             </div>
             <div class="registrarse">
                 <p>¿Todavia no tenes una cuenta?<span routerLink="/registro">Registrate</span></p>
@@ -30,4 +30,13 @@
 </div>
 <div class="loading" id="loadingLogin" hidden>
     <img src="../../../assets/imagenes/loading.gif" alt="">
+</div>
+<div class="usuarios" id="ui">
+    <div class="ui" *ngFor="let usuario of this.listadoCompleto">
+        <img src="../../../assets/imagenes/defectoUser.webp" alt="" (click)="completar(usuario.email)">
+        <p>{{usuario.perfil}}</p>
+    </div>
+</div>
+<div class="btnUsuarios" *ngIf="!mostrarUsuarios" id="btnUsuarios">
+    <button (click)="quitarBoton();">Usuarios</button>
 </div>

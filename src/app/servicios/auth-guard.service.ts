@@ -2,26 +2,31 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { MiServicioService } from './mi-servicio.service';
+import { take, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class AuthGuardService  {
 
-  constructor(private navegador : Router, private auth : AngularFireAuth) { }
+  constructor(private navegador : Router, private auth : AngularFireAuth, private servicio : MiServicioService) { }
 
-  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean
-  {
-    let current = this.auth.auth.currentUser;
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
+    {
+      return this.auth.authState
+      .pipe(take(1))
+      .pipe(map(authState => !!authState))
+      .pipe(tap(auth => {
+        if(!auth){
+          this.navegador.navigate(['login'])
+        }
+    }));
     
-    if(current != null)
-      return true;
-    else
-      this.navegador.navigate(["login"]);
-      return false
   }
 }
 
-interface CanActivate {
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean
-}
+
+
