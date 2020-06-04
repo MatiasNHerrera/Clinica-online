@@ -13,7 +13,7 @@
     left: 50%;
     transform: translate(-50%,-50%);
     width: 50%;
-    height: 50%;
+    height: 75%;
     min-height: 456px;
     background: #ffff;
     box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.75);
@@ -78,6 +78,7 @@ h1
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-flow: column;
 }
 
 .datosPaciente, .datosProfesional
@@ -85,7 +86,67 @@ h1
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    height: 50%;
+    width: 100%;
+}
+
+.rto
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 20%;
+}
+
+.datos-pacientes-pt1, .datos-pacientes-pt2
+{
+    width: 50%;
+    height: 100%;
+}
+
+.captcha
+{
+    width: 30%;
+    height: 30%;
+    text-align: center;
+}
+
+.captcha-img img
+{
+    width: 100%;
+    box-shadow: 0px 1px 5px 0px black;
+    margin-top: 3%;
+    transition: 0.2s;
+}
+
+.captcha-submit input[type="text"]
+{
+    margin-top: 5%;
+    width: 100%;
+    color: black;
+}
+
+.captcha-submit input[type="text"]::placeholder
+{
+    color: black;
+}
+
+.captcha-submit button
+{
+    width: 35%;
+    margin-top: 5%;
+    border: none;
+    background: rgb(4, 64, 155);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.captcha-submit button:hover
+{
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 0px 2px 0px black;
+    color: black;
 }
  
 .datosPaciente input[type="text"], .datosPaciente input[type="password"]
@@ -104,7 +165,6 @@ h1
 .datosPaciente input[type="text"]:focus, .datosPaciente input[type="password"]:focus,
 .datosProfesional input[type="text"]:focus, .datosProfesional input[type="password"]:focus
 {
-    border: 1px solid rgb(97, 156, 20);
     box-shadow: 0px 0px 0px 4px rgba(57, 114, 3, 0.3);
 }
 
@@ -116,16 +176,11 @@ h1
     color: black;
 }
 
-.rto
-{
-    width: 70%;
-    max-height: 59px;
-}
 
-.datosPaciente button, .datosProfesional button
+.rto button, .datosProfesional button
 {
-    width: 40%;
-    height: 38px;
+    width: 30%;
+    height: 30%;
     background: rgb(97, 140, 78);
     border: none;
     font-size: 1.2em;
@@ -149,7 +204,7 @@ h1
 .datosProfesional input[type="text"], .datosProfesional input[type="password"]
 {
     margin: 4%;
-    height: 35px;
+    height: 15%;
     width: 90%;
     border: none;
     background: rgba(90,152,43,0.5);
@@ -161,17 +216,58 @@ h1
 
 .mensaje
 {
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30%;
-    height: 7%;
-    background: rgb(206, 21, 21);
-    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: absolute;
+    top: 93%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 5%;
+    background: rgb(206, 21, 21);
+    border-radius: 5px;
     font-size: 1.3em;
+}
+
+select
+{
+    height: 15%;
+    width: 90%;
+    color: black;
+    margin: 4%;
+    border-radius: 5px;
+    outline: none;
+}
+
+option
+{
+    color: black;
+    text-align: center;
+}
+
+.agregar-especialidad
+{
+    display: flex;
+    align-items: center;
+    width: 98%;
+    height: 20%;
+}
+
+.agregar-especialidad img
+{
+    width: 7%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.agregar-especialidad img:hover
+{
+    transform: scale(1.1);
+}
+
+.agregar-especialidad input[type="text"]
+{
+    height: 75%;
 }

@@ -16,6 +16,9 @@ import { MiServicioService } from './servicios/mi-servicio.service';
 import { AuthGuardService } from './servicios/auth-guard.service';
 import { PedirTurnoComponent } from './componentes/pedir-turno/pedir-turno.component';
 import { AtenderPacientesComponent } from './componentes/atender-pacientes/atender-pacientes.component';
+import { GestionarProfesionalComponent } from './componentes/gestionar-profesional/gestionar-profesional.component';
+import { HabilitadoPipePipe } from './pipes/habilitado-pipe.pipe';
+import { DetalleTurnosComponent } from './componentes/detalle-turnos/detalle-turnos.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { AtenderPacientesComponent } from './componentes/atender-pacientes/atend
     RegistroAdminComponent,
     HabilitarProfesionalComponent,
     PedirTurnoComponent,
-    AtenderPacientesComponent
+    AtenderPacientesComponent,
+    GestionarProfesionalComponent,
+    HabilitadoPipePipe,
+    DetalleTurnosComponent,
   ],
   imports: [
     BrowserModule,

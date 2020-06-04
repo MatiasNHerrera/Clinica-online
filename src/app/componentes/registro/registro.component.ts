@@ -11,19 +11,32 @@ import { MiServicioService } from 'src/app/servicios/mi-servicio.service';
 })
 export class RegistroComponent implements OnInit {
 
+  captcha: string;
   listadoImagenes;
   pacientes = [];
   profesionales = []
+  nombre = "";
+  apellido = "";
   claveRepetida;
   email;
   pass;
-  especialidades;
+  especialidades : any = [];
+  especialidadesDB: any = [];
+  nuevaEspecialidad : string;
+  especialidad : string = "";
   user;
   fotoUno = "";
   fotoDos = "";
-  constructor(private db : AngularFirestore, private service : MiServicioService) { }
+
+  constructor(private db : AngularFirestore, private service : MiServicioService) 
+  {
+    this.service.getEspecialidades().then((datos) => {
+      this.especialidades = datos;
+    });
+  }
 
   ngOnInit(): void {
+    
     this.db.collection('pacientes').valueChanges().subscribe((pacientes)=>{
         this.pacientes = pacientes;
     })
@@ -48,16 +61,13 @@ export class RegistroComponent implements OnInit {
 
   registrar()
   {
-    if(this.validarCorreo())
+    if(this.validarNombreApellido() && this.validarCorreo() && this.validarClave() && this.verificarCaptcha())
     {
-      if(this.validarClave())
-      {
-        if(this.user == 'paciente'){
-          this.registrarPaciente();
-        }
-        else{
-          this.registrarProfesional();
-        }
+      if(this.user == 'paciente'){
+        this.registrarPaciente();
+      }
+      else{
+        this.registrarProfesional();
       }
     }
   }
@@ -109,6 +119,22 @@ export class RegistroComponent implements OnInit {
     return retorno;
   }
 
+  validarNombreApellido() : boolean
+  {
+    let retorno = false;
+
+    if(this.nombre != "" && this.apellido != "")
+    {
+      retorno = true;
+    }
+    else
+    {
+      this.textoMostrar("Campos nombre y apellido son requeridos");
+    }
+
+    return retorno;
+  }
+
   fadeIn()
   {
     $("#mensajeRegistro").fadeIn();
@@ -127,14 +153,8 @@ export class RegistroComponent implements OnInit {
   {
     this.service.registrarNuevo(this.email, this.pass).then(() => {
     
-      this.db.collection("pacientes").doc(this.email).set({
-        email : this.email,
-        contraseña : this.pass,
-        fotoUno: this.fotoUno,
-        fotoDos: this.fotoDos,
-        perfil: this.user
-      });
-
+      this.db.collection("pacientes").doc(this.email).set(this.pacienteToJson());
+      this.agregarEnTurnos(this.email);
       this.service.enviarEmail();
 
     }).catch(() => {
@@ -145,16 +165,9 @@ export class RegistroComponent implements OnInit {
   registrarProfesional()
   {
     this.service.registrarNuevo(this.email, this.pass).then(() => {
-
-        this.db.collection("profesionales").doc(this.email).set({
-          email : this.email,
-          contraseña : this.pass,
-          fotoUno: this.fotoUno,
-          fotoDos: this.fotoDos,
-          especialidades : this.especialidades,
-          habilitado : false,
-          perfil: this.user
-        })
+      
+        this.agregarEspecialidadBD();
+        this.db.collection("profesionales").doc(this.email).set(this.profesionalToJson())
         
         this.service.enviarEmail();
 
@@ -198,6 +211,130 @@ export class RegistroComponent implements OnInit {
     s = fecha.getSeconds().toString();
 
     return y + "-" + m + "-" + d + "_" + h + "-" + min + "-" + s;
+  }
+
+  agregarEspecialidad()
+  {
+    let flag = false;
+
+    for(let especilidad of this.especialidades)
+    {
+      if(this.nuevaEspecialidad.toUpperCase() == especilidad)
+      {
+        flag = true;
+        break;
+      }
+    }
+
+    if(!flag)
+    {
+      this.especialidades.push(this.nuevaEspecialidad.toUpperCase());
+      $("[name=nueva-especialidad]").val("");
+    }
+
+  }
+
+  agregarEspecialidadBD()
+  {
+    var select: any = document.getElementById("selectRegistrar");
+    this.especialidad = select.options[select.selectedIndex].text;
+
+    this.service.getEspecialidades().then((datos) => {
+      let flag = false;
+      let aux : any = datos;
+
+      for(let especialidad of aux)
+      {
+        if(this.especialidad == especialidad)
+        {
+          flag = true;
+          break;
+        }
+      }
+  
+      if(flag)
+      {
+        let unsubs = this.db.collection("especialidades").doc(this.especialidad).valueChanges().subscribe((datos) => {
+          let info : any = datos 
+          info.profesionales.push(this.profesionalToJson())//Obtengo el array para pushear luego el nuevo profesional
+  
+          this.db.collection("especialidades").doc(this.especialidad).update({
+            profesionales : info.profesionales
+          })
+  
+          unsubs.unsubscribe();
+        })
+      }
+      else
+      {
+        this.db.collection("especialidades").doc(this.especialidad).set({
+          nombre : this.especialidad,
+          profesionales : [this.profesionalToJson()]
+        })
+      }
+
+    });
+  
+  }
+
+
+  profesionalToJson()
+  {
+    return {
+      nombre : this.nombre,
+      apellido : this.apellido,
+      email : this.email,
+      contraseña : this.pass,
+      fotoUno: this.fotoUno,
+      fotoDos: this.fotoDos,
+      especialidades : this.especialidad,
+      habilitado : false,
+      perfil: this.user
+    }
+  }
+
+  pacienteToJson()
+  {
+    return {
+      nombre : this.nombre,
+      apellido : this.apellido,
+      email : this.email,
+      contraseña : this.pass,
+      fotoUno: this.fotoUno,
+      fotoDos: this.fotoDos,
+      perfil: this.user
+    }
+  }
+
+  verificarCaptcha() : boolean
+  {
+    let retorno = false;
+
+    if(this.captcha == "qgphjd"){
+      retorno = true
+      $("#captcha-img").css("box-shadow", "0px 1px 10px 2px rgb(94, 197, 15)");
+    }
+    else if(this.captcha == null)
+    {
+      this.textoMostrar("Debes verificar el captcha");
+    }
+    else{
+      $("#captcha-img").css("box-shadow", "0px 1px 10px 2px rgb(255, 0, 0)");
+    }
+
+    return retorno
+  } 
+
+  agregarEnTurnos(email)
+  {
+    this.service.getTurnosPaciente(email).then((datos) => {
+      if(datos == undefined)
+      {
+        this.db.collection("turnos-paciente").doc(email).set({
+          turnos : []
+        })
+      }
+    })
   }
 
 }

@@ -1,0 +1,248 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.cnt-gestionar
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.turnos, .cnt-gestion-turnos-horarios
+{
+    width: 40%;
+    height: 80%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px 2px rgba(0,0,0,0.75);
+}
+
+.cnt-gestion-turnos-horarios
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: column;
+    background: none;
+    box-shadow: none
+}
+
+.gestion-turnos, .gestion-horarios
+{
+    background: #fff;
+    box-shadow: 0px 1px 5px 2px rgba(0,0,0,0.75);
+    width: 100%;
+    height: 45%;
+    border-radius: 5px;
+}
+
+.gestion-horarios
+{
+    display: inline-flex;
+}
+
+.nuevo-horario, .horarios-profesional
+{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+.nuevo-horario
+{
+    border-right: 1px solid black;
+}
+
+.nuevo-horario .time-inputs
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 40%;
+}
+
+input[type="time"]
+{
+    border-radius: 5px;
+}
+
+.nuevo-horario div
+{
+    width: 50%;
+    height: 10%;
+}
+
+.nuevo-horario div select
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    font-weight: bold;
+
+}
+
+.nuevo-horario button
+{
+    width: 30%;
+    height: 10%;
+    background: rgb(97, 140, 78);
+    color: ghostwhite;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s;
+}
+
+.nuevo-horario button:hover
+{
+    background: rgb(64, 94, 52);
+}
+
+.horarios-profesional ul
+{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+}
+
+.horarios-profesional li
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5%;
+    border-bottom: 1px solid black;
+}
+
+.horarios-profesional li:nth-child(odd)
+{
+    background: rgba(221, 221, 221, 0.75);
+}
+
+.horarios-profesional li img
+{
+    width: 10%;
+    cursor: pointer;
+}
+
+.duracion-turno
+{
+    width: 100%;
+    text-align: center;
+}
+
+.duracion-turno input[type="number"]
+{
+    width: 50%;
+    border-radius: 5px;
+    margin: 5% 0 8%;
+}
+
+.turnos ul li
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    height: 15%;
+    padding: 3%;
+    margin-top: 3%;
+    color: black;
+    cursor: auto;
+    background: rgba(216, 216, 216, 0.7);
+    box-shadow: inset 0px 0px 10px 2px rgb(73, 73, 73);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.turnos ul li:hover
+{
+    color: rgb(15, 75, 153);
+    background: #fff;
+    box-shadow: inset 0px 0px 1px 2px rgb(73, 73, 73);
+}
+
+
+
+.turnos ul
+{
+    list-style: none;
+    padding: 4%;
+    height: 20%;
+}
+
+.turnos button
+{
+    background: rgb(15, 75, 153);
+    border: none;
+    width: 15%;
+    border-radius: 30px;
+    height: 3vh;
+    cursor: pointer;
+}
+
+.gestion-turnos
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.gestion-turnos p
+{
+    font-size: 1.2em;
+}
+
+.gestion-turnos .estado-p
+{
+    position: relative;
+    right: 38%;
+    top: -4%;
+    text-transform: uppercase;
+    color: rgb(15, 75, 153);
+}
+
+.btn-gestion-turnos {
+    text-align: center;
+    width: 100%;
+}
+
+.btn-gestion-turnos button
+{
+    width: 20%;
+    height: 5vh;
+    border-radius: 30px;
+    background: rgb(197, 30, 30);
+    border: none;
+    color: ghostwhite;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    outline: none;
+}
+
+.btn-gestion-turnos button:hover
+{
+    transform: scale(1.1);
+}
+
+.btn-gestion-turnos button:nth-child(1)
+{
+    margin-right: 4%;
+    background: rgb(50, 170, 26);
+}

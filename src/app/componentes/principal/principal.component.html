@@ -8,7 +8,7 @@
             <button *ngIf="usuario.perfil == 'admin'" (click)="cambiarVista('habilitar')">Aceptar Profesional</button>
             <button *ngIf="usuario.perfil == 'admin'" (click)="cambiarVista('registro')">Agregar Admin</button>
             <li *ngIf="this.current">
-                <a>{{this.nameSplit}}</a>
+                <a>{{usuario.nombre}}</a>
                 <ul class="drop-down">
                     <li (click)="logout()">Log Out</li>
                     <li>Perfil</li>
@@ -20,24 +20,29 @@
     </nav>
 </header>
 <div class="cntrBody" *ngIf="queMostrar == 'principal'">
-    <h1>¡Bienvenido!</h1>
-    <div class="img-usuario">
+    <!--<div class="img-usuario">
         <img *ngIf="fotoUno" (click)="cambiarImagen('dos')" src="{{usuario.fotoUno}}" alt="">
         <img *ngIf="fotoDos" (click)="cambiarImagen('uno')" src="{{usuario.fotoDos}}" alt="">
-    </div>
-    <div class="turno" *ngIf="usuario.perfil == 'paciente'">
-        <h1>¿Desea ser atendido?</h1>
-        <button routerLink="/pedir-turno">Pedir Turno</button>
-    </div>
-    <div class="turno" *ngIf="usuario.perfil == 'profesional'">
-        <h1>Turnos del dia</h1>
-        <button routerLink="/atender-pacientes">Atender</button>
-    </div>
+    </div>-->
     <!--<div class="reseña" *ngIf="usuario.perfil == 'paciente'">
         <p>Comentarios *</p>
         <textarea name="" id="" cols="30" rows="10"></textarea>
         <button>Enviar</button>
     </div>-->
+    <div class="card" *ngIf="usuario.perfil == 'paciente'">
+        <h1>¿Desea ser atendido?</h1>
+        <button routerLink="/pedir-turno">Pedir Turno</button>
+    </div>
+
+    <!--------------------------------PROFESIONAL------------------------------------------->
+    <div class="card" *ngIf="usuario.perfil == 'profesional'">
+        <h1>Turnos del dia</h1>
+        <button routerLink="/atender-pacientes">Atender</button>
+    </div>
+    <div class="card" *ngIf="usuario.perfil == 'profesional'">
+        <h1>Gestionar Horarios</h1>
+        <button routerLink="/gestionar-profesional">Gestionar</button>
+    </div>
 </div>
 <div class="registro-admin" *ngIf="queMostrar == 'registro'">
     <app-registro-admin (cambioVista)="cambiarVista($event)"></app-registro-admin>

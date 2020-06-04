@@ -11,7 +11,7 @@ body
     background: url("./assets/imagenes/consultorio.jpg")no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 @font-face {

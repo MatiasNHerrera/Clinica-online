@@ -13,7 +13,6 @@ import { storage } from 'firebase';
 export class PrincipalComponent implements OnInit {
 
   current;
-  nameSplit;
   queMostrar = "principal";
   usuario : any = "";
   fotoUno = true;
@@ -24,7 +23,6 @@ export class PrincipalComponent implements OnInit {
   
     this.fireAuth.auth.onAuthStateChanged((dato) => {
       this.current = dato;
-      this.nameSplit = this.current.email.split("@")[0];
       this.getUser(this.current.email);
     })
 
@@ -58,18 +56,8 @@ export class PrincipalComponent implements OnInit {
                 this.usuario = dato;
               });
             }
-            else
-            {
-              console.log(this.usuario);
-              this.getFotosUser();
-            }
             
           });
-        }
-        else
-        {
-          console.log(this.usuario);
-          this.getFotosUser();
         }
     });
   }

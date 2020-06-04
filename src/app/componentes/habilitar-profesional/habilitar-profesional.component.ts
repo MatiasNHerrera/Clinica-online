@@ -12,8 +12,10 @@ export class HabilitarProfesionalComponent implements OnInit {
 
   @Output() cambioVista : EventEmitter<any> = new EventEmitter<any>();
   profesionales = [];
+  especialidades : any;
+  semana : any;
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore, private servicio : MiServicioService) { }
 
   ngOnInit(): void {
     this.db.collection("profesionales").valueChanges().subscribe((datos)=>{
@@ -36,26 +38,71 @@ export class HabilitarProfesionalComponent implements OnInit {
     }
   }
 
-  habilitar(email : string, opcion : string)
+  habilitar(email : string, opcion : boolean)
   {
-    switch(opcion)
-    {
-      case 'habilitar':
-      this.db.collection("profesionales").doc(email).update({
-        habilitado : true
-      });
-      break;
-      case 'deshabilitar':
-        this.db.collection("profesionales").doc(email).update({
-          habilitado : false
-        });
-      break;
-    }
+    this.db.collection("profesionales").doc(email).update({
+        habilitado : opcion
+    });
+    this.agregarEnTurnos(email);
+    this.habilitarEspecialidades(email, opcion);
+    this.habilitarSemana(email, opcion)
   }
 
   cancelar()
   {
     this.cambioVista.emit("principal");
+  }
+
+  habilitarEspecialidades(email: string, opcion : boolean)
+  {
+    this.servicio.getTodasEspecialidades().then((datos) => {
+      this.especialidades = datos;
+
+      for(let especialidad of this.especialidades)
+      {
+        for(let profesional of especialidad.profesionales)
+        {
+          if(profesional.email == email)
+          {
+            profesional.habilitado = opcion;
+            this.servicio.updateEspecialidad(especialidad.nombre, {profesionales : especialidad.profesionales})
+            break;
+          }
+        }
+      }
+    })
+  }
+
+  habilitarSemana(email: string, opcion: boolean)
+  {
+    this.servicio.getSemanaTodos().then((datos) => {
+      this.semana = datos;
+
+      for(let dia of this.semana)
+      {
+        for(let profesional of dia.profesionales)
+        {
+          if(profesional.email == email)
+          {
+            profesional.habilitado = opcion;
+            this.servicio.updateSemana(dia.nombre, {profesionales : dia.profesionales});
+            break;
+          }
+        }
+      }
+    })
+  }
+
+  agregarEnTurnos(email : string)
+  {
+    this.servicio.getTurnoProfesional(email).then((datos) => {
+      if(datos == undefined)
+      {
+        this.db.collection("turnos-profesionales").doc(email).set({
+          turnos : []
+        })
+      }
+    })
   }
 
 }

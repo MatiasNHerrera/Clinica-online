@@ -1,25 +1,80 @@
-<div class="cnt-pedir-turno">
+<div class="cnt-paciente" *ngIf="this.vista == 'turnos'">
+    <div class="cnt-pedir-turno">
+        <div class="title">
+            <h1>Pedir Turno</h1>
+        </div>
+        <div class="button-filter">
+            <button (click)="filtrarApellido()">Apellido</button>
+            <button (click)="filtrarEspecialidades()">Especialidad</button>
+            <button (click)="filtrarSemana()">Semana</button>
+        </div>
+        <div class="cnt-form">
+            <div class="listado-apellido" *ngIf="this.listadoMostrar == 'listado-apellido'">
+                <ul>
+                    <li *ngFor="let profesional of this.profesionales | habilitadoPipe" (click)="setHorariosProfesional(profesional)">{{profesional.apellido}}</li>
+                </ul>
+            </div>
+            <div class="listado-especialidad" *ngIf="this.listadoMostrar == 'listado-especialidades'">
+                <ul>
+                    <li *ngFor="let especialidad of this.especialidades"><b>{{especialidad.nombre | uppercase}}:</b>
+                        <ul>
+                            <li *ngFor="let profesional of especialidad.profesionales | habilitadoPipe" (click)="setHorariosProfesional(profesional)">{{profesional.apellido}}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="listado-semana" *ngIf="this.listadoMostrar == 'listado-semana'">
+                <ul>
+                    <li *ngFor="let dia of this.semana"><b>{{dia.nombre | uppercase}}:</b>
+                        <ul>
+                            <li *ngFor="let profesional of dia.profesionales | habilitadoPipe" (click)="setHorariosProfesional(profesional)">{{profesional.apellido}}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="horarios-profesional" *ngIf="this.profesionalSeleccionado">
+                <form ngNativeValidate (ngSubmit)="crearTurno()">
+                    <div class="h-p-dia">
+                        <label for="">Dia</label>
+                        <select name="" id="" (change)="cambiarHorarios()" id="h-p-select" required>
+                            <option value="" selected hidden>Seleccione una opcion</option>
+                            <option *ngFor="let horarios of this.profesionalSeleccionado.horarios" value="">{{horarios.dia}}</option>
+                        </select>
+                        <label for="">Especialidad</label>
+                        <select name="" id="" (change)="setEspecialidad()" id="h-p-select-especialidad" required>
+                            <option value="" selected hidden>Seleccione una opcion</option>
+                            <option *ngFor="let especialidad of this.profesionalSeleccionado.especialidades" value="">{{especialidad}}</option>
+                        </select>
+                    </div>
+                    <div class="h-p-horario">
+                        <label for="">Horario</label>
+                        <input type="time" id="h-p-time" required name="time" [(ngModel)]="this.horaSeleccionada">
+                        <input type="date" id="h-p-date" required (change)="valdiarDiaSemana()" name="fecha" [(ngModel)]="this.fechaSeleccionada">
+                        <input type="submit" id="h-p-submit" (click)="this.validarTurnosDisponibles()">
+                    </div>
+                    <input type="reset" id="h-p-reset" hidden>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="cnt-turnos-paciente">
+        <div class="title">
+            <h1>Turnos</h1>
+        </div> 
+        <div class="listado-turnos">
+            <ul class="li-turnos-ul">
+                <li *ngFor="let turno of this.turnosPaciente.turnos">
+                    {{turno.fecha}} - {{turno.horario}} - {{turno.profesional}} - {{turno.estado | uppercase}} - {{turno.especialidad}} 
+                    <img  src="../../../assets/imagenes/clear.png" alt="" *ngIf="turno.estado=='pendiente' || turno.estado=='aceptado'" (click)="this.cancelarTurno(turno)">
+                    <button *ngIf="turno.estado == 'atendido' || turno.estado == 'cancelado'" (click)="cambiarVista('detalle',turno)">Detalles</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="detalle-turnos" *ngIf="this.vista == 'detalle'">
     <div class="title">
-        <h1>Turnos</h1>
-    </div>
-    <div class="cnt-form">
-        <div class="profesionales-disponibles">
-            <label for="">Profesionales</label>
-            <select name="" id="">
-                <option selected hidden>Seleccione una opction</option>
-                <option *ngFor="let profesionales of profesionales">{{profesionales.email}}</option>
-            </select>
-        </div>
-        <div class="fecha-turno">
-            <label for="">Fecha</label>
-            <input type="date">
-        </div>
-        <div class="hora-turno">
-            <label for="">Horarios</label>
-            <input type="time" min="09:00" max="18:00">
-        </div>
-        <div class="btn-turno">
-            <button>Turno</button>
-        </div>
-    </div>
+        <h1>Detalle</h1>
+    </div> 
+    <app-detalle-turnos (vista)="this.cambiarVista($event, null)" [turno]="this.turnoDetalle"></app-detalle-turnos>
 </div>

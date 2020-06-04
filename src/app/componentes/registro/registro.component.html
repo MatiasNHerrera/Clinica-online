@@ -11,30 +11,70 @@
     </div>
     <form class="formulario" *ngIf="user == 'paciente'">
         <div class="datosPaciente">
-            <input type="text" placeholder="Ingrese correo" [(ngModel)]="email" name="emailPaciente" maxlength="30">
-            <input type="password" placeholder="Ingrese contraseña" [(ngModel)]="pass" name="passPaciente" maxlength="20">
-            <input type="password" placeholder="Repita contraseña" [(ngModel)]="claveRepetida" name="repitaPassPaciente" maxlength="20">
-            <input type="file" (change)="upload($event, 1)">
-            <input type="file" (change)="upload($event, 2)">
-            <div class="rto">
-                <button (click)="registrar()">Registrar</button>
-                <button (click)="cancelar()">Cancelar</button>
-            </div>  
+            <div class="datos-pacientes-pt1">
+                <input type="text" placeholder="Nombre" name="nombre-paciente" [(ngModel)]="nombre">
+                <input type="text" placeholder="Apellido" name="apellido-paciente" [(ngModel)]="apellido">
+                <input type="text" placeholder="Ingrese correo" [(ngModel)]="email" name="emailPaciente" maxlength="30">
+            </div>
+            <div class="datos-pacientes-pt2">
+                <input type="password" placeholder="Ingrese contraseña" [(ngModel)]="pass" name="passPaciente" maxlength="20">
+                <input type="password" placeholder="Repita contraseña" [(ngModel)]="claveRepetida" name="repitaPassPaciente" maxlength="20">
+                <input type="file" (change)="upload($event, 1)">
+                <input type="file" (change)="upload($event, 2)">
+            </div>
         </div>
+        <div class="captcha">
+            <div class="captcha-img">
+                <img src="../../../assets/imagenes/captcha.jpg" alt="" id="captcha-img">
+            </div>
+            <div class="captcha-submit">
+                <input type="text" placeholder="Escriba el texto" name="captcha" [(ngModel)]="this.captcha">
+                <button (click)="verificarCaptcha()">Verificar</button>
+            </div>
+            <p></p>
+        </div> 
+        <div class="rto">
+            <button (click)="registrar()">Registrar</button>
+            <button (click)="cancelar()">Cancelar</button>
+        </div> 
     </form>
     <form class="formulario" *ngIf="user == 'profesional'">
         <div class="datosProfesional">
-            <input type="text" placeholder="Ingrese correo" [(ngModel)]="email" name="emailProfesional" maxlength="30">
-            <input type="password" placeholder="Ingrese contraseña"  [(ngModel)]="pass" name="passProfesional" maxlength="20">
-            <input type="password" placeholder="Repita contraseña" [(ngModel)]="claveRepetida" name="repitaPassProfesional" maxlength="20">
-            <input type="text" placeholder="Ingrese especialidades" [(ngModel)]="especialidades" name="repitaPassProfesional" maxlength="40">
-            <input type="file" (change)="upload($event, 1)">
-            <input type="file" (change)="upload($event, 2)">
-            <div class="rto">
-                <button (click)="registrar()">Registrar</button>
-                <button (click)="cancelar()">Cancelar</button>
-            </div>  
+            <div class="datos-pacientes-pt1">
+                <input type="text" placeholder="Nombre" name="nombre-profesional" [(ngModel)]="nombre">
+                <input type="text" placeholder="Apellido" name="apellido-profesional" [(ngModel)]="apellido">
+                <input type="text" placeholder="Ingrese correo" [(ngModel)]="email" name="emailProfesional" maxlength="30">
+                <input type="password" placeholder="Ingrese contraseña"  [(ngModel)]="pass" name="passProfesional" maxlength="20">
+            </div>
+            <div class="datos-pacientes-pt2">
+                <select name="" id="selectRegistrar">
+                    <option value="" selected hidden>Seleccione Opcion</option>
+                    <option value="" *ngFor="let especialidad of this.especialidades">{{especialidad}}</option>
+                </select>
+                <div class="agregar-especialidad">
+                    <input type="text" name="nueva-especialidad" placeholder="Agregue especialidad" [(ngModel)]="nuevaEspecialidad">
+                    <img src="../../../assets/imagenes/add.png" alt="" (click)="agregarEspecialidad()">
+                </div>
+                <input type="file" (change)="upload($event, 1)">
+                <input type="file" (change)="upload($event, 2)">
+                <input type="password" placeholder="Repita contraseña" [(ngModel)]="claveRepetida" name="repitaPassProfesional" maxlength="20">
+            </div>
         </div>
+        <div class="captcha">
+            <div class="captcha-img">
+                <img src="../../../assets/imagenes/captcha.jpg" alt="" id="captcha-img">
+            </div>
+            <div class="captcha-submit">
+                <input type="text" placeholder="Escriba el texto" name="captcha" [(ngModel)]="this.captcha">
+                <button (click)="verificarCaptcha()">Verificar</button>
+            </div>
+            <p></p>
+        </div> 
+        <div class="rto">
+            <button (click)="registrar()">Registrar</button>
+            <button (click)="cancelar()">Cancelar</button>
+        </div>  
+
     </form>
 </div>
 <div class="mensaje" id="mensajeRegistro" style="display: none;">

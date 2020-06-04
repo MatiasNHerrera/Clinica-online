@@ -1,0 +1,8 @@
+<div class="cnt-detalle">
+    <p>*{{this.turno.estado | uppercase}}</p>
+    <div class="motivo">
+        <p>Motivo:</p>
+        <span>{{this.turno.motivoCancelado}}</span>
+    </div>
+    <button (click)="this.cambiarVista('turnos')">Aceptar</button>
+</div>

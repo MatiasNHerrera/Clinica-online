@@ -1,0 +1,58 @@
+<div class="cnt-gestionar">
+    <div class="turnos">
+        <ul>
+            <li *ngFor="let turno of this.turnosProfesional.turnos" (click)="this.turnoSeleccionado = turno" (click)="verificarEstado(turno)">
+                {{turno.fecha}} - {{turno.horario}} - {{turno.paciente}}
+            </li>
+        </ul>
+    </div>
+    <div class="cnt-gestion-turnos-horarios">
+        <div class="gestion-turnos">
+            <p class="estado-p" *ngIf="this.turnoSeleccionado">*{{this.turnoSeleccionado.estado}}</p>
+            <p *ngIf="!this.turnoSeleccionado else detalle">Por favor, seleccione un turno</p>
+            <ng-template #detalle>
+                <p>{{turnoSeleccionado.fecha}}</p>
+                <p>{{turnoSeleccionado.horario}}</p>
+                <p>{{turnoSeleccionado.paciente}}</p>
+                <p>{{turnoSeleccionado.especialidad}}</p>
+                <div class="btn-gestion-turnos">
+                    <button id="btn-g-t-aceptar" (click)="modificarTurno('acepto')">Aceptar</button>
+                    <button id="btn-g-t-rechazar" (click)="modificarTurno('rechazo')">Rechazar</button>
+                </div>
+            </ng-template>
+        </div>
+        <div class="gestion-horarios">
+            <div class="nuevo-horario">
+                <div class="time-inputs">
+                    <label for="">Desde</label>
+                    <input type="time" name="time-desde" [(ngModel)]="this.desde" min="08:00" max="19:00">
+                    <br>
+                    <label for="">Hasta</label>
+                    <input type="time" name="time-hasta" [(ngModel)]="this.hasta" min="08:00" max="19:00">
+                </div>
+                <div class="duracion-turno">
+                    <label for="">Duracion turnos</label>
+                    <input type="number" min="10" value="30" name="duracion" [(ngModel)]="this.duracion">
+                </div>
+                <div class="days">
+                    <select name="" id="select-dia-profesional" (change)="validarSabado()">
+                        <option value="">Lunes</option>
+                        <option value="">Martes</option>
+                        <option value="">Miercoles</option>
+                        <option value="">Jueves</option>
+                        <option value="">Viernes</option>
+                        <option value="">Sabado</option>
+                    </select>
+                </div>
+                <button (click)="agregarHorario()">Aceptar</button>
+            </div>
+            <div class="horarios-profesional">
+                <ul>
+                    <li *ngFor="let horario of this.profesional.horarios">{{horario.dia}} | {{horario.desde}} a {{horario.hasta}} 
+                        <img src="../../../assets/imagenes/clear.png" alt="" (click)="borrarHorario(horario)">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

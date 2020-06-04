@@ -1,0 +1,41 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.cnt-detalle
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    flex-flow: column;
+    width: 100%;
+    height: 85%;
+}
+
+.cnt-detalle p, .cnt-detalle span
+{
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+
+.cnt-detalle button {
+    background: rgb(27, 84, 158);
+    color: ghostwhite;
+    border: none;
+    border-radius: 30px;
+    width: 50%;
+    height: 10%;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cnt-detalle button:hover{
+    background: rgb(19, 58, 109);
+}

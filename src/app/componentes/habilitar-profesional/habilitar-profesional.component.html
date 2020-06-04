@@ -11,8 +11,8 @@
                 <td>{{profesional.email}}</td>
                 <td><img src="{{profesional.fotoUno}}" alt=""></td>
                 <td><img src="{{profesional.fotoDos}}" alt=""></td>
-                <td *ngIf="!profesional.habilitado" (click)="habilitar(profesional.email, 'habilitar')"><button>Habilitar</button></td>
-                <td *ngIf="profesional.habilitado" (click)="habilitar(profesional.email, 'deshabilitar')"><button>Deshabilitar</button></td>
+                <td *ngIf="!profesional.habilitado" (click)="habilitar(profesional.email, true)"><button>Habilitar</button></td>
+                <td *ngIf="profesional.habilitado" (click)="habilitar(profesional.email, false)"><button>Deshabilitar</button></td>
                 <hr>
             </tr>
         </tbody>
