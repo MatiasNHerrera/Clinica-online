@@ -23,7 +23,10 @@ export class GestionarProfesionalComponent implements OnInit {
   dia : string;
   duracion : number;
   turnosProfesional:any;
-  turnoSeleccionado:any = false;;
+  turnoSeleccionado:any = false;
+  motivo:boolean = false;
+  motivoText: string;
+  detalle:boolean = false;
 
   ngOnInit(): void {
     this.servicio.getLogueado().then((log) => {
@@ -45,6 +48,7 @@ export class GestionarProfesionalComponent implements OnInit {
     this.servicio.getSemanaDoc().then((datos) =>{
       this.semana = datos;// todos los dias de la semana
     })
+
   }
 
   agregarHorario()
@@ -198,27 +202,32 @@ export class GestionarProfesionalComponent implements OnInit {
     return index;
   }
 
-  modificarTurno(opcion:string){
-    let motivo = "estoy de viaje";
-    for(let item of this.turnosProfesional.turnos)
-    {
-      if(item.fecha == this.turnoSeleccionado.fecha && item.horario == this.turnoSeleccionado.horario && item.profesional == this.turnoSeleccionado.profesional)
-      {
-        if(opcion == 'acepto')
-        {
-          item.estado = 'aceptado';
-          item.motivoCancelado = motivo
-        }
-        else
-        {
-          item.estado = 'cancelado';
-        }
+  modificarTurno(data:any){
 
-        this.servicio.updateTurnos("turnos-profesionales", this.turnoSeleccionado.profesional, this.turnosProfesional);
-        this.servicio.updateTurnos("turnos-paciente", this.turnoSeleccionado.paciente, this.turnosProfesional);
-        break;
-      }
-    }  
+    if(data.opcion != null)
+    {
+      for(let item of this.turnosProfesional.turnos)
+      {
+        if(item.fecha == this.turnoSeleccionado.fecha && item.horario == this.turnoSeleccionado.horario && item.profesional == this.turnoSeleccionado.profesional)
+        {
+          if(data.opcion == 'acepto')
+          {
+            item.estado = 'aceptado';
+          }
+          else
+          {
+            item.motivoCanceladoProfesional = data.motivo
+            item.estado = 'cancelado';
+          }
+
+          this.servicio.updateTurnos("turnos-profesionales", this.turnoSeleccionado.profesional, this.turnosProfesional);
+          this.servicio.updateTurnos("turnos-paciente", this.turnoSeleccionado.paciente, this.turnosProfesional);
+          break;
+        }
+      } 
+    }
+
+    this.motivo = false;
   }
 
 
@@ -228,12 +237,24 @@ export class GestionarProfesionalComponent implements OnInit {
     {
       $("#btn-g-t-aceptar").attr("disabled","true");
       $("#btn-g-t-rechazar").attr("disabled","true");
+      (<HTMLInputElement>document.querySelector("#btn-g-t-aceptar")).style.background = "grey";
+      (<HTMLInputElement>document.querySelector("#btn-g-t-rechazar")).style.background = "grey";
     }
     else
     {
       $("#btn-g-t-aceptar").removeAttr("disabled");
       $("#btn-g-t-rechazar").removeAttr("disabled");
+      (<HTMLInputElement>document.querySelector("#btn-g-t-aceptar")).style.background = "rgb(50, 170, 26)";
+      (<HTMLInputElement>document.querySelector("#btn-g-t-rechazar")).style.background = "rgb(197, 30, 30)";
     }
+  }
+
+  mostrarDetalle(opcion : boolean)
+  {
+    if(opcion)
+      (<HTMLInputElement>document.querySelector(".detalle-turno-profesional")).removeAttribute("hidden");
+    else
+      (<HTMLInputElement>document.querySelector(".detalle-turno-profesional")).setAttribute("hidden","true");
   }
 
 }

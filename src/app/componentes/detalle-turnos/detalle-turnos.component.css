@@ -29,8 +29,8 @@
     color: ghostwhite;
     border: none;
     border-radius: 30px;
-    width: 50%;
-    height: 10%;
+    width: 100%;
+    height: 40%;
     font-size: 1em;
     cursor: pointer;
     transition: 0.2s;
@@ -38,4 +38,55 @@
 
 .cnt-detalle button:hover{
     background: rgb(19, 58, 109);
+}
+
+.datos-turnos
+{
+    width: 60%;
+}
+
+.datos-turnos ul
+{
+    display: flex;
+    flex-flow: column;
+    list-style: none;
+}
+
+.datos-turnos li
+{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    margin: 1%;
+    padding: 1%;
+}
+
+.datos-turnos li span:nth-child(2)
+{
+    color: rgb(175, 33, 33);
+}
+
+.comentario-profesional 
+{
+    margin-top: 15%;
+}
+
+.comentario-profesional p
+{
+    text-transform: uppercase;
+}
+
+.comentario-profesional blockquote
+{
+    font-style: italic;
+}
+
+.button-detalle
+{   
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 15%;
+    width: 22%;
 }

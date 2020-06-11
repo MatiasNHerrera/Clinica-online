@@ -19,6 +19,11 @@ import { AtenderPacientesComponent } from './componentes/atender-pacientes/atend
 import { GestionarProfesionalComponent } from './componentes/gestionar-profesional/gestionar-profesional.component';
 import { HabilitadoPipePipe } from './pipes/habilitado-pipe.pipe';
 import { DetalleTurnosComponent } from './componentes/detalle-turnos/detalle-turnos.component';
+import { MotivoCancelacionComponent } from './componentes/motivo-cancelacion/motivo-cancelacion.component';
+import { TurnosDelDiaPipe } from './pipes/turnos-del-dia.pipe';
+import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
+import { DetalleTurnosProfesionalComponent } from './componentes/detalle-turnos-profesional/detalle-turnos-profesional.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -33,6 +38,10 @@ import { DetalleTurnosComponent } from './componentes/detalle-turnos/detalle-tur
     GestionarProfesionalComponent,
     HabilitadoPipePipe,
     DetalleTurnosComponent,
+    MotivoCancelacionComponent,
+    TurnosDelDiaPipe,
+    EncuestaComponent,
+    DetalleTurnosProfesionalComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +58,8 @@ import { DetalleTurnosComponent } from './componentes/detalle-turnos/detalle-tur
       measurementId: "G-3QYB7QHDQ5"
     }),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule
   ],
   providers: [MiServicioService, AuthGuardService],
   bootstrap: [AppComponent]

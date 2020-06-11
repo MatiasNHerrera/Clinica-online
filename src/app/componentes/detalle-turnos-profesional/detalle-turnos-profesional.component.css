@@ -1,0 +1,81 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+    font-size: 1.1em;
+
+}
+
+.cnt-detalle-turno-profesional
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(124, 124, 124, 0.9);
+}
+
+.cnt-detalle
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    flex-flow: column;
+    width: 40%;
+    height: 45%;
+    margin: 20% auto;
+    background: #fff;
+    box-shadow: 0px 1px 5px 2px rgba(0,0,0,0.75);
+    border-radius: 5px;
+}
+
+.cnt-detalle p, .cnt-detalle span
+{
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+
+.comentario-paciente
+{
+    margin-top: 15%;
+}
+
+.comentario-paciente p
+{
+    text-transform: uppercase;
+}
+
+.comentario-paciente blockquote
+{
+    font-style: italic;
+}
+
+.button-detalle-paciente {
+    width: 50%;
+    height: 10%;
+}
+
+.button-detalle-paciente button
+{
+    background: rgb(27, 84, 158);
+    color: ghostwhite;
+    border: none;
+    border-radius: 30px;
+    width: 65%;
+    height: 100%;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.button-detalle-paciente button:hover
+{
+    background: rgb(34, 108, 204);
+    box-shadow: 0px 3px 4px 0px black;
+}

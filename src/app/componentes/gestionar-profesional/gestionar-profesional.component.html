@@ -16,8 +16,9 @@
                 <p>{{turnoSeleccionado.paciente}}</p>
                 <p>{{turnoSeleccionado.especialidad}}</p>
                 <div class="btn-gestion-turnos">
-                    <button id="btn-g-t-aceptar" (click)="modificarTurno('acepto')">Aceptar</button>
-                    <button id="btn-g-t-rechazar" (click)="modificarTurno('rechazo')">Rechazar</button>
+                    <button *ngIf="this.turnoSeleccionado.estado != 'atendido'" id="btn-g-t-aceptar" (click)="modificarTurno({opcion : 'acepto'})">Aceptar</button>
+                    <button *ngIf="this.turnoSeleccionado.estado != 'atendido'" id="btn-g-t-rechazar" (click)="this.motivo = true">Rechazar</button>
+                    <button *ngIf="this.turnoSeleccionado.estado == 'atendido'" (click)="this.mostrarDetalle(true)">Ver detalle</button>
                 </div>
             </ng-template>
         </div>
@@ -55,4 +56,10 @@
             </div>
         </div>
     </div>
+</div>
+<div class="cnt-modal-motivo" *ngIf="this.motivo">
+    <app-motivo-cancelacion (motivoEnviar)="this.modificarTurno($event)"></app-motivo-cancelacion>
+</div>
+<div class="detalle-turno-profesional" hidden>
+    <app-detalle-turnos-profesional [turno]="this.turnoSeleccionado" (cerrarDetalle)="this.mostrarDetalle($event)"></app-detalle-turnos-profesional>
 </div>

@@ -1,1 +1,61 @@
-<p>atender-pacientes works!</p>
+<div class="cnt-atender">
+    <div class="cnt-turnos-aceptados">
+        <div class="title">
+            <h1>Turnos</h1>
+        </div>
+        <div class="listado-turnos-aceptados">
+            <ul>
+                <li *ngFor="let turno of this.turnos.turnos | turnosDelDia" id="{{turno.dia}}{{turno.fecha}}{{turno.horario}}" (click)="seleccionar(turno)">
+                    {{turno.profesional}} {{turno.paciente}} {{turno.horario}} {{turno.fecha}}
+                </li>
+            </ul>
+        </div>
+        <div class="button-atender">
+            <button *ngIf="this.turnoSeleccionado" (click)="this.cambiarVista('atender')"  id="button-atender">Atender</button>
+        </div>
+    </div>
+    <div class="datos-turno-atendido">
+        <div class="title">
+            <h1>Atender</h1>
+        </div>
+        <div class="datos-paciente-atendido" *ngIf="this.atender">
+            <form ngNativeValidate action="" (ngSubmit)="this.abrirEncuesta()">
+                <div>
+                    <label for="">Edad</label>
+                    <input type="number" name="edad" [(ngModel)]="this.edad" required min="0" max="130">
+                </div>
+                <div>
+                    <label for="">Temperatura</label>
+                    <input type="number" name="temperatura" [(ngModel)]="this.temperatura" required max="50" min="10" step="0.01">
+                </div>
+                <div>
+                    <label for="">Presion</label>
+                    <input type="number" name="presion" [(ngModel)]="this.presion" required step="0.01">
+                </div>
+                <div>
+                    <label for="">Estatura</label>
+                    <input type="number" name="estatura" [(ngModel)]="this.estatura" required step="0.01">
+                </div>
+                <div>
+                    <label for="">Peso</label>
+                    <input type="number" name="peso" [(ngModel)]="this.peso" required step="0.01">
+                </div>
+                <div>
+                    <div>
+                        <input type="text" name="dato" [(ngModel)]="this.dato" placeholder="Nombre dato">
+                        <input type="text" name="valor" [(ngModel)]="this.valor" placeholder="Valor">
+                        <img src="../../../assets/imagenes/add.png" alt="" (click)="this.agregarNuevoDato()">                
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Finalizar">
+                    <input type="reset" id="reset-atender" hidden>
+                    <button (click)="this.cambiarVista('cancelar')">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="encuesta-component" hidden>
+    <app-encuesta [turnoSeleccionado]="this.turnoSeleccionado" (finalizarTurno)="this.finalizarTurno()"></app-encuesta>
+</div>

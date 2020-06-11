@@ -23,6 +23,7 @@
     background : #fff;
     border-radius: 5px;
     box-shadow: 0px 1px 8px 0px black;
+    overflow-y: auto;
 }
 
 .title
@@ -249,6 +250,6 @@ form
 
 .detalle-turnos
 {
-    height: 55%;
+    height: 65%;
     margin: 10% auto;
 }

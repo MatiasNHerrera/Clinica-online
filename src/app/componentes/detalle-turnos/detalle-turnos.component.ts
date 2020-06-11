@@ -11,6 +11,7 @@ export class DetalleTurnosComponent implements OnInit {
 
   @Input() turno : any
   @Output() vista : EventEmitter<any> = new EventEmitter<any>();
+  detalleTurno:boolean;
 
   ngOnInit(): void {
   }
@@ -18,6 +19,16 @@ export class DetalleTurnosComponent implements OnInit {
   cambiarVista(vista: string)
   { 
     this.vista.emit(vista);
+  }
+
+  abrirEncuesta()
+  {
+    (<HTMLInputElement>document.querySelector(".encuesta-paciente")).removeAttribute("hidden");
+  }
+
+  cerrarEncuesta()
+  {
+    (<HTMLInputElement>document.querySelector(".encuesta-paciente")).setAttribute("hidden", "true");
   }
 
 }

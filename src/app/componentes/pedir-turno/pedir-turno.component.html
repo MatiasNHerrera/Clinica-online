@@ -65,7 +65,7 @@
             <ul class="li-turnos-ul">
                 <li *ngFor="let turno of this.turnosPaciente.turnos">
                     {{turno.fecha}} - {{turno.horario}} - {{turno.profesional}} - {{turno.estado | uppercase}} - {{turno.especialidad}} 
-                    <img  src="../../../assets/imagenes/clear.png" alt="" *ngIf="turno.estado=='pendiente' || turno.estado=='aceptado'" (click)="this.cancelarTurno(turno)">
+                    <img  src="../../../assets/imagenes/clear.png" alt="" *ngIf="turno.estado=='pendiente' || turno.estado=='aceptado'" (click)="this.setTurnoSeleccionado(turno)">
                     <button *ngIf="turno.estado == 'atendido' || turno.estado == 'cancelado'" (click)="cambiarVista('detalle',turno)">Detalles</button>
                 </li>
             </ul>
@@ -77,4 +77,7 @@
         <h1>Detalle</h1>
     </div> 
     <app-detalle-turnos (vista)="this.cambiarVista($event, null)" [turno]="this.turnoDetalle"></app-detalle-turnos>
+</div>
+<div class="cnt-modal-motivo" *ngIf="this.motivo">
+    <app-motivo-cancelacion (motivoEnviar)="this.cancelarTurno($event)"></app-motivo-cancelacion>
 </div>

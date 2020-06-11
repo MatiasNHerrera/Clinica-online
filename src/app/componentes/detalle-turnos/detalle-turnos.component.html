@@ -1,8 +1,29 @@
 <div class="cnt-detalle">
     <p>*{{this.turno.estado | uppercase}}</p>
-    <div class="motivo">
-        <p>Motivo:</p>
-        <span>{{this.turno.motivoCancelado}}</span>
+    <div class="motivo" *ngIf="this.turno.motivoCanceladoPaciente || this.turno.motivoCanceladoProfesional">
+        <p *ngIf="this.turno.motivoCanceladoPaciente">Motivo Paciente:</p>
+        <p *ngIf="this.turno.motivoCanceladoProfesional">Motivo Profesional:</p>
+        <span *ngIf="this.turno.motivoCanceladoPaciente">{{this.turno.motivoCanceladoPaciente}}</span>
+        <span *ngIf="this.turno.motivoCanceladoProfesional">{{this.turno.motivoCanceladoProfesional}}</span>
     </div>
-    <button (click)="this.cambiarVista('turnos')">Aceptar</button>
+    <div class="datos-turnos" *ngIf="this.turno.estado == 'atendido'">
+        <div class="listado-datos-turno">
+            <ul>
+                <li *ngFor="let item of this.turno.datos">
+                    <span>{{item.nombre}}</span><span>{{item.valor}}</span>
+                </li>   
+            </ul>
+        </div>
+        <div class="comentario-profesional">
+            <p>Comentario del profesional:</p>
+            <blockquote>{{this.turno.comentarioProfesional}}</blockquote>
+        </div>
+    </div>
+    <div class="button-detalle">
+        <button (click)="this.cambiarVista('turnos')">Aceptar</button>
+        <button *ngIf="!this.turno.comentarioPaciente && this.turno.comentarioProfesional" (click)="this.abrirEncuesta()">Dar reseña</button>
+    </div>
+</div>
+<div class="encuesta-paciente" hidden>
+    <app-encuesta [turnoSeleccionado]="this.turno" (finalizarTurno)="this.cerrarEncuesta()"></app-encuesta>
 </div>

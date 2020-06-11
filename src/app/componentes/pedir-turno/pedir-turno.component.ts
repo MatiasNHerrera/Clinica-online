@@ -27,6 +27,8 @@ export class PedirTurnoComponent implements OnInit {
   especialidadSeleccionada:string;
   vista = "turnos";
   turnoDetalle: any;
+  turnoSeleccionado:any;
+  motivo:boolean;
 
   constructor(private auth : AngularFireAuth, private servicio : MiServicioService, private db : AngularFirestore) { }
 
@@ -255,19 +257,33 @@ export class PedirTurnoComponent implements OnInit {
     }
   }
 
-  cancelarTurno(data:any)
+  setTurnoSeleccionado(turno : any)
   {
-    let i:number = 0
+    this.turnoSeleccionado = turno;
+    this.motivo = true;
+  }
 
-    for(let item of this.turnosPaciente.turnos)
+  cancelarTurno(eleccion:any)
+  {
+    console.log(eleccion);
+    console.log(this.turnoSeleccionado);
+
+    if(eleccion.opcion != null)
     {
-      if(item.fecha == data.fecha && item.horario == data.horario && item.profesional == data.profesional)
+      for(let item of this.turnosPaciente.turnos)
       {
-        item.estado = 'cancelado';
-        this.servicio.updateTurnos("turnos-profesionales", item.profesional, this.turnosPaciente);
-        this.servicio.updateTurnos("turnos-paciente", item.paciente, this.turnosPaciente);
+        if(item.fecha == this.turnoSeleccionado.fecha && item.horario == this.turnoSeleccionado.horario && item.profesional == this.turnoSeleccionado.profesional)
+        {
+          item.estado = 'cancelado';
+          item.motivoCanceladoPaciente = eleccion.motivo
+          this.servicio.updateTurnos("turnos-profesionales", item.profesional, this.turnosPaciente);
+          this.servicio.updateTurnos("turnos-paciente", item.paciente, this.turnosPaciente);
+          break;
+        }
       }
     }
+
+    this.motivo = false;
   }
 
   cambiarVista(opcion:string, turno:any)

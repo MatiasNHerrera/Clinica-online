@@ -1,0 +1,16 @@
+<div class="cnt-detalle-turno-profesional">
+    <div class="cnt-detalle">
+        <p>*{{this.turno.estado | uppercase}}</p>
+        <div class="motivo" *ngIf="this.turno.motivoCanceladoPaciente">
+            <p>Motivo Profesional:</p>
+            <span>{{this.turno.motivoCanceladoProfesional}}</span>
+        </div>
+        <div class="comentario-paciente">
+            <p>Comentario del paciente:</p>
+            <blockquote>{{this.turno.comentarioPaciente}}</blockquote>
+        </div>
+        <div class="button-detalle-paciente">
+            <button (click)="this.cerrar()">Aceptar</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="cnt-encuenta">
+    <div class="cnt-encuenta-form">
+        <form ngNativeValidate (ngSubmit)="this.subirEncuesta()">
+            <div class="encuesta-textarea">
+                <p>*Ingrese un breve comentario</p>
+                <textarea name="" id="encuesta-textarea" cols="30" rows="10" required></textarea>
+            </div>
+            <hr>
+            <div class="encuesta-radio">
+                <p>Satisfecho</p>
+                <div>
+                    <label for="">Muy satisfecho</label>
+                    <input type="radio" name="group1" checked value="muy satisfecho">
+                </div>
+                <div>
+                    <label for="">Satisfecho</label>
+                    <input type="radio" name="group1" value="satisfecho">
+                </div>
+                <div>
+                    <label for="">Poco satisfecho</label>
+                    <input type="radio" name="group1" value="poco satisfecho">
+                </div>
+            </div>
+            <hr>
+            <div class="encuesta-checkbox">
+                <p>¿Que le parece la modalidad online?</p>
+                <div>
+                    <label for="">Innovador</label>
+                    <input type="checkbox" name="group2" value="innovador" checked>
+                </div>
+                <div>
+                    <label for="">Bien, pero puede mejorar</label>
+                    <input type="checkbox" name="group2" value="bien, pero puede mejorar">
+                </div>
+                <div>
+                    <label for="">No estamos preparados por completo</label>
+                    <input type="checkbox" name="group2" value="no estamos preparados por completo">
+                </div>
+                <div>
+                    <label for="">Ya trabaje con esta modalidad</label>
+                    <input type="checkbox" name="group2" value="ya trabaje con esta modalidad">
+                </div>
+                <div>
+                    <label for="">Se deberia trabajar asi mas seguido</label>
+                    <input type="checkbox" name="group2" value="se deberia trabajar asi mas seguido">
+                </div>
+            </div>
+            <div class="encuesta-button">
+                <input type="submit">
+                <button type="button">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
