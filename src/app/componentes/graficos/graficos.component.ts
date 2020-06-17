@@ -81,7 +81,7 @@ export class GraficosComponent implements OnInit {
     series: []
   }
 
-  cargarOperacionesEspecialidades(option:string)
+  cargarOperacionesEspecialidades(option:string = null)
   {
     let c_especialidad:number = 0;
     this.series = [];
@@ -117,7 +117,7 @@ export class GraficosComponent implements OnInit {
     this.setOptionsAndChart("bar","Operacion por especialidad","Cantidad de operaciones","operaciones");
   }
 
-  cargarCantidadTurnosPorSemana(option:string)
+  cargarCantidadTurnosPorSemana(option:string = null)
   {
     let c_turnos:number = 0;
     this.series = [];
@@ -153,7 +153,7 @@ export class GraficosComponent implements OnInit {
     this.setOptionsAndChart("column","Cantidad de turnos por dia","Cantidad de turnos", "cantidad turnos");
   }
 
-  cargarTurnosPorProfesional(option:string)
+  cargarTurnosPorProfesional(option:string = null)
   {
     this.series = [];
 
@@ -177,7 +177,7 @@ export class GraficosComponent implements OnInit {
     this.setOptionsAndChart("bar","Cantidad de turnos por profesional","Cantidad de turnos","cantidad turnos");
   }
 
-  cargarProfesionalesPorDia(option:string)
+  cargarProfesionalesPorDia(option:string = null)
   {
     this.series = [];
 
