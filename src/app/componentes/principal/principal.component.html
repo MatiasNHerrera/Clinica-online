@@ -43,10 +43,24 @@
         <h1>Gestionar Horarios</h1>
         <button routerLink="/gestionar-profesional">Gestionar</button>
     </div>
+    <div class="card" *ngIf="usuario.perfil == 'admin'">
+        <h1>Buscar turnos</h1>
+        <button (click)="cambiarVista('busqueda')">Gestionar</button>
+    </div>
+    <div class="card" *ngIf="usuario.perfil == 'admin'">
+        <h1>Graficos y archivos</h1>
+        <button (click)="cambiarVista('graficos')">Gestionar</button>
+    </div>
 </div>
 <div class="registro-admin" *ngIf="queMostrar == 'registro'">
     <app-registro-admin (cambioVista)="cambiarVista($event)"></app-registro-admin>
 </div>
 <div class="habilitar-profesional" *ngIf="queMostrar == 'habilitar'">
     <app-habilitar-profesional (cambioVista)="cambiarVista($event)"></app-habilitar-profesional>
+</div>
+<div class="buscar-turnos" *ngIf="queMostrar == 'busqueda'">
+    <app-busqueda-turnos></app-busqueda-turnos>
+</div>
+<div class="graficos-archivos" *ngIf="queMostrar == 'graficos'">
+    <app-graficos></app-graficos>
 </div>

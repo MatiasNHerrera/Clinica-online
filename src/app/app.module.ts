@@ -23,7 +23,11 @@ import { MotivoCancelacionComponent } from './componentes/motivo-cancelacion/mot
 import { TurnosDelDiaPipe } from './pipes/turnos-del-dia.pipe';
 import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 import { DetalleTurnosProfesionalComponent } from './componentes/detalle-turnos-profesional/detalle-turnos-profesional.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatosTurnoPipe } from './pipes/datos-turno.pipe';
+import { BusquedaTurnosComponent } from './componentes/busqueda-turnos/busqueda-turnos.component';
+import { DatosEncuestaPipe } from './pipes/datos-encuesta.pipe';
+import { GraficosComponent } from './componentes/graficos/graficos.component'
 
 @NgModule({
   declarations: [
@@ -42,6 +46,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     TurnosDelDiaPipe,
     EncuestaComponent,
     DetalleTurnosProfesionalComponent,
+    DatosTurnoPipe,
+    BusquedaTurnosComponent,
+    DatosEncuestaPipe,
+    GraficosComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,35 @@
+<div class="cnt-graficos" id="cnt-graficos">
+    <div class="graficos" id="graficos">
+        <span>Seleccione un grafico</span>
+    </div>
+    <div class="cnt-graficos-options">
+        <div>
+            <button (click)="this.cargarOperacionesEspecialidades()">Operaciones por especialidad</button>
+            <div class="drop-down-file">
+                <span (click)="this.cargarOperacionesEspecialidades('excel')">Excel</span>
+                <span (click)="this.cargarOperacionesEspecialidades('pdf')" >Pdf</span>
+            </div>
+        </div>
+        <div>
+            <button (click)="this.cargarCantidadTurnosPorSemana()">Turnos por dia de la semana</button>
+            <div class="drop-down-file">
+                <span (click)="this.cargarCantidadTurnosPorSemana('excel')">Excel</span>
+                <span (click)="this.cargarCantidadTurnosPorSemana('pdf')" >Pdf</span>
+            </div>
+        </div>
+        <div>
+            <button (click)="this.cargarTurnosPorProfesional()">Medicos por cantidad de turnos</button>
+            <div class="drop-down-file">
+                <span (click)="this.cargarTurnosPorProfesional('excel')">Excel</span>
+                <span (click)="this.cargarTurnosPorProfesional('pdf')" >Pdf</span>
+            </div>
+        </div>
+        <div>
+            <button (click)="this.cargarProfesionalesPorDia()">Medicos por cantidad de dias</button>
+            <div class="drop-down-file">
+                <span (click)="this.cargarProfesionalesPorDia('excel')">Excel</span>
+                <span (click)="this.cargarProfesionalesPorDia('pdf')" >Pdf</span>
+            </div>
+        </div>
+    </div>
+</div>

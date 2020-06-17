@@ -11,6 +11,7 @@ import { AtenderPacientesComponent } from './componentes/atender-pacientes/atend
 import { AuthGuardProfesionalService } from './servicios/auth-guard-profesional.service';
 import { GestionarProfesionalComponent } from './componentes/gestionar-profesional/gestionar-profesional.component';
 import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
+import { GraficosComponent } from './componentes/graficos/graficos.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: "atender-pacientes", component: AtenderPacientesComponent, canActivate : [AuthGuardProfesionalService], data: {animation: 'Atender'}},
   {path: "gestionar-profesional", component: GestionarProfesionalComponent, data:{animation: 'Gestion'}},
   {path: "encuesta", component: EncuestaComponent},
+  {path: "graficos", component: GraficosComponent}
 ];
 
 @NgModule({

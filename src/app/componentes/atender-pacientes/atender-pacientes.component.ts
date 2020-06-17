@@ -21,6 +21,7 @@ export class AtenderPacientesComponent implements OnInit {
   current : any
   atender:boolean;
   id_actual:string;
+  c_agregados:number = 0;
 
   constructor(private service : MiServicioService) { }
 
@@ -52,21 +53,27 @@ export class AtenderPacientesComponent implements OnInit {
   //agrego los datos nuevos al array de datos general
   agregarNuevoDato()
   {
-    this.datosAgregados.push({nombre: this.dato, valor : this.valor});
-    (<HTMLInputElement>document.querySelector("[name='dato']")).value = null;
-    (<HTMLInputElement>document.querySelector("[name='valor']")).value = null;
+    if(this.c_agregados < 3)
+    {
+      this.turnoSeleccionado.datos[this.dato] = this.valor;
+      (<HTMLInputElement>document.querySelector("[name='dato']")).value = null;
+      (<HTMLInputElement>document.querySelector("[name='valor']")).value = null;
+      this.c_agregados++;
+    }
+    else
+    {
+      console.log("error, no se pueden agregar mas de tres campos");
+    }
   }
 
-  //agrego los datos por defecto al array de datos general
+  //agrego los datos por defecto al campo de datos generales
   agregarDatos()
   {
-
-    this.datosAgregados.push({nombre: "temperatura", valor : this.temperatura})
-    this.datosAgregados.push({nombre: "peso", valor : this.peso})
-    this.datosAgregados.push({nombre: "estatura", valor : this.estatura})
-    this.datosAgregados.push({nombre: "presion", valor : this.presion})
-    this.datosAgregados.push({nombre: "edad", valor : this.edad})
-    this.turnoSeleccionado.datos = this.datosAgregados;//creo una nueva variable en turnos que guarde el array de datos
+    this.turnoSeleccionado.datos.temperatura = this.temperatura;
+    this.turnoSeleccionado.datos.peso = this.peso;
+    this.turnoSeleccionado.datos.estatura = this.estatura;
+    this.turnoSeleccionado.datos.presion = this.presion;
+    this.turnoSeleccionado.datos.edad = this.edad;
   }
 
   //coloco los inputs para ingresar datos o los cierro, segun corresponda
@@ -86,6 +93,7 @@ export class AtenderPacientesComponent implements OnInit {
   seleccionar(turno :any)
   {
     this.turnoSeleccionado = turno;
+    this.turnoSeleccionado.datos = {};
     this.id_actual != undefined ? document.getElementById(this.id_actual).classList.remove("selected") : console.log("no hago nada");
     document.getElementById(`${turno.dia}${turno.fecha}${turno.horario}`).classList.add("selected");
     this.id_actual=`${turno.dia}${turno.fecha}${turno.horario}`;

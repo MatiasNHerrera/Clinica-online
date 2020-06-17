@@ -99,6 +99,15 @@ export class MiServicioService {
     })
   }
 
+  getEspecialidad(especialidad : string)
+  {
+    return new Promise((resolve, reject) => {
+      this.db.collection("especialidades").doc(especialidad).valueChanges().subscribe((datos)=> {
+        resolve(datos);
+      },error => reject(error))
+    })
+  }
+
   getProfesional(email : string)
   {
     return new Promise((resolve, reject) => {
@@ -114,6 +123,15 @@ export class MiServicioService {
       this.db.collection("profesionales").valueChanges().subscribe((datos) => {
         resolve(datos);
       }, error => reject(error));
+    })
+  }
+
+  getPaciente(email:string)
+  {
+    return new Promise((resolve,reject) => {
+      this.db.collection("pacientes").doc(email).valueChanges().subscribe((datos:any) => {
+        resolve(datos);
+      })
     })
   }
 

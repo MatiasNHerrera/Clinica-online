@@ -1,0 +1,107 @@
+*
+{
+    margin : 0;
+    padding: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.cnt-graficos
+{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+
+.cnt-graficos-options
+{
+    width: 70%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5%;
+}
+
+.cnt-graficos-options div
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cnt-graficos-options img
+{
+    position: relative;
+    top: 20px;
+    width: 8%;
+    padding: 5%;
+    background: rgb(255, 137, 11);
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px 1px black;
+    cursor: pointer;
+}
+
+.cnt-graficos-options button
+{
+    width: 90%;
+    height: 100%;
+    box-shadow: rgb(255, 246, 175) 0px 1px 0px 0px;
+    background: linear-gradient(rgb(255, 236, 100) 5%, rgb(255, 171, 35) 100%) rgb(255, 236, 100);
+    border-radius: 6px;
+    border: 1px solid rgb(255, 170, 34);
+    cursor: pointer;
+    color: rgb(51, 51, 51);
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-shadow: rgb(255, 238, 102) 0px 1px 0px;
+}
+
+.graficos
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    width: 850px;
+    height: 300px;
+    border: 3px solid rgb(51, 92, 173);
+}
+
+.graficos span
+{
+    font-style: italic;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: black;
+}
+
+div .drop-down-file
+{
+    position: absolute;
+    top: 88%;
+    flex-flow: row;
+    background: rgba(255, 5, 61, 0.7);
+    width: 12%;
+    height: 5%;
+}
+
+.drop-down-file span
+{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    transition: 0.2s;
+}
+
+.drop-down-file span:hover
+{
+    background: rgb(124, 7, 62);
+}

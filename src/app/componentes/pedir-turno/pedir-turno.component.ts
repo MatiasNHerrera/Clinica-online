@@ -18,6 +18,7 @@ export class PedirTurnoComponent implements OnInit {
   semana:any;
   current:any;
   profesionalSeleccionado:any;
+  datosPaciente:any;
   diaSeleccionado:string;
   fechaSeleccionada: any;
   turnosProfesional: any;
@@ -33,16 +34,22 @@ export class PedirTurnoComponent implements OnInit {
   constructor(private auth : AngularFireAuth, private servicio : MiServicioService, private db : AngularFirestore) { }
 
   ngOnInit(): void {
+
     this.servicio.getProfesionales().then((datos)=> { //traigo todos los profesionales
       this.profesionales = datos;
     });
 
-    this.servicio.getLogueado().then((user) => { //traigo el usuario logueado
+    this.servicio.getLogueado().then((user) => { //traigo el usuario logueado y luego, otros datos del paciente que seran utilizados
       this.current = user
 
       this.servicio.getTurnosPaciente(this.current.email).then((datos) => {
         this.turnosPaciente = datos;
         console.log(this.turnosPaciente);
+      })
+
+      this.servicio.getPaciente(this.current.email).then((datos) => {
+        this.datosPaciente = datos;
+        console.log(datos);
       })
 
     });
@@ -180,7 +187,7 @@ export class PedirTurnoComponent implements OnInit {
         this.servicio.setTurno(this.profesionalSeleccionado.email,this.current.email, this.toJSON(this.duracion_turno))
       }
       else{
-        console.log("como el orto funciona tu programa mogolico");
+        console.log("funciona mal");
       }
 
     })
@@ -253,7 +260,9 @@ export class PedirTurnoComponent implements OnInit {
       horario: this.horaSeleccionada,
       paciente: this.current.email,
       profesional: this.profesionalSeleccionado.email,
-      especialidad : this.especialidadSeleccionada
+      especialidad : this.especialidadSeleccionada,
+      nombrePaciente: this.datosPaciente.nombre,
+      nombreProfesional: this.profesionalSeleccionado.nombre
     }
   }
 

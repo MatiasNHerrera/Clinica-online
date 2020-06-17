@@ -1,0 +1,78 @@
+<div class="cnt-busqueda-turnos">
+    <div class="turnos-buscados">
+        <div class="title">
+            <h1>Busqueda</h1>
+        </div>
+        <div class="buscador">
+            <div class="input-buscador">
+                <input type="text" name="stringClave" (keyup)="this.filtrarTurnos()" [(ngModel)]="this.stringClave">
+            </div>
+            <div class="img-buscador">
+                <img src="../../../assets/imagenes/search.png" alt="" width="10%">
+            </div>
+        </div>
+        <div class="listado-turnos-encontrados">
+            <ul>
+                <li *ngFor="let turno of this.turnosEncontrados" (click)="this.turnoSeleccionado = turno">
+                    <span>{{turno.nombrePaciente}}</span>
+                    <span>{{turno.nombreProfesional}}</span>
+                    <span>{{turno.especialidad}}</span>
+                    <span>{{turno.estado}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="detalle-turnos-buscados">
+        <div class="title">
+            <h1>Detalle</h1>
+        </div>
+        <div class="detalle-turno-seleccionado">
+            <p *ngIf="!this.turnoSeleccionado">Seleccione un turno</p>
+            <div class="detalle-turno-seleccionado-encuestas" *ngIf="this.turnoSeleccionado.encuestaPaciente || this.turnoSeleccionado.encuestaProfesional">
+                <div class="detalle-turno-seleccionado-encuesta-paciente">
+                    <p>{{this.turnoSeleccionado.nombrePaciente}}</p>
+                    <ul>
+                        <li *ngFor="let item of this.turnoSeleccionado.encuestaPaciente | datosEncuesta">
+                            <span>»{{item}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="detalle-turno-seleccionado-encuesta-profesional">
+                    <p>{{this.turnoSeleccionado.nombreProfesional}}</p>
+                    <ul>
+                        <li *ngFor="let item of this.turnoSeleccionado.encuestaProfesional | datosEncuesta">
+                            <span>»{{item}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+            <div class="detalle-turno-seleccionado-datos" *ngIf="this.turnoSeleccionado.datos">
+                <ul>
+                    <li *ngFor="let item of this.turnoSeleccionado.datos | datosTurno">
+                        <span>{{item.nombre}}</span><span>{{item.valor}}</span>
+                    </li>   
+                </ul>
+            </div>
+            <div class="detalle-turno-seleccionado-datos-comentarios">
+                <div class="comentario" *ngIf="this.turnoSeleccionado.comentarioProfesional">
+                    <p>Comentario del profesional:</p>
+                    <blockquote>{{this.turnoSeleccionado.comentarioProfesional}}</blockquote>
+                </div>
+                <div class="comentario" *ngIf="this.turnoSeleccionado.comentarioPaciente">
+                    <p>Comentario del paciente:</p>
+                    <blockquote>{{this.turnoSeleccionado.comentarioPaciente}}</blockquote>
+                </div>
+            </div>
+            <div class="detalle-turno-seleccionado-motivo-cancelacion">
+                <div class="comentario" *ngIf="this.turnoSeleccionado.motivoCanceladoProfesional">
+                    <p>Motivo del profesional:</p>
+                    <blockquote>{{this.turnoSeleccionado.motivoCanceladoProfesional}}</blockquote>
+                </div>
+                <div class="comentario" *ngIf="this.turnoSeleccionado.motivoCanceladoPaciente">
+                    <p>Motivo del paciente:</p>
+                    <blockquote>{{this.turnoSeleccionado.motivoCanceladoPaciente}}</blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

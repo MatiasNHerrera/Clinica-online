@@ -9,7 +9,7 @@
     <div class="datos-turnos" *ngIf="this.turno.estado == 'atendido'">
         <div class="listado-datos-turno">
             <ul>
-                <li *ngFor="let item of this.turno.datos">
+                <li *ngFor="let item of this.turno.datos | datosTurno">
                     <span>{{item.nombre}}</span><span>{{item.valor}}</span>
                 </li>   
             </ul>
