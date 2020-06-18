@@ -63,7 +63,7 @@
         </div> 
         <div class="listado-turnos">
             <ul class="li-turnos-ul">
-                <li *ngFor="let turno of this.turnosPaciente.turnos">
+                <li *ngFor="let turno of this.turnosPaciente.turnos | listadoTurnosPaciente">
                     {{turno.fecha}} - {{turno.horario}} - {{turno.profesional}} - {{turno.estado | uppercase}} - {{turno.especialidad}} 
                     <img  src="../../../assets/imagenes/clear.png" alt="" *ngIf="turno.estado=='pendiente' || turno.estado=='aceptado'" (click)="this.setTurnoSeleccionado(turno)">
                     <button *ngIf="turno.estado == 'atendido' || turno.estado == 'cancelado'" (click)="cambiarVista('detalle',turno)">Detalles</button>

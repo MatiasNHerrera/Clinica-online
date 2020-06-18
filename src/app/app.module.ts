@@ -27,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatosTurnoPipe } from './pipes/datos-turno.pipe';
 import { BusquedaTurnosComponent } from './componentes/busqueda-turnos/busqueda-turnos.component';
 import { DatosEncuestaPipe } from './pipes/datos-encuesta.pipe';
-import { GraficosComponent } from './componentes/graficos/graficos.component'
+import { GraficosComponent } from './componentes/graficos/graficos.component';
+import { ListadoTurnosPacientePipe } from './pipes/listado-turnos-paciente.pipe'
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { GraficosComponent } from './componentes/graficos/graficos.component'
     BusquedaTurnosComponent,
     DatosEncuestaPipe,
     GraficosComponent,
+    ListadoTurnosPacientePipe,
   ],
   imports: [
     BrowserModule,
