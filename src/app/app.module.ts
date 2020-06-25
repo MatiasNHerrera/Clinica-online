@@ -28,7 +28,8 @@ import { DatosTurnoPipe } from './pipes/datos-turno.pipe';
 import { BusquedaTurnosComponent } from './componentes/busqueda-turnos/busqueda-turnos.component';
 import { DatosEncuestaPipe } from './pipes/datos-encuesta.pipe';
 import { GraficosComponent } from './componentes/graficos/graficos.component';
-import { ListadoTurnosPacientePipe } from './pipes/listado-turnos-paciente.pipe'
+import { ListadoTurnosPacientePipe } from './pipes/listado-turnos-paciente.pipe';
+import { HoverDirective } from './directivas/hover.directive'
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ListadoTurnosPacientePipe } from './pipes/listado-turnos-paciente.pipe'
     DatosEncuestaPipe,
     GraficosComponent,
     ListadoTurnosPacientePipe,
+    HoverDirective,
   ],
   imports: [
     BrowserModule,

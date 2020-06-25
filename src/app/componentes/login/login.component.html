@@ -38,5 +38,5 @@
     </div>
 </div>
 <div class="btnUsuarios" *ngIf="!mostrarUsuarios" id="btnUsuarios">
-    <button (click)="quitarBoton();">Usuarios</button>
+    <button [appHover]="'color'" (click)="quitarBoton();">Usuarios</button>
 </div>
